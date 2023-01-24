@@ -2,6 +2,20 @@ import styled from 'styled-components';
 import { useState } from 'react'; 
 import axios from 'axios';
 // import { Player, Controls } from '@lottiefiles/react-lottie-player';
+import SearchIcon from '@mui/icons-material/Search';
+
+const Wrapper = styled.div`
+width:100%;
+`
+
+const Row = styled.div`
+display:flex;
+flex-direction:column;
+`
+
+const Input = styled.input`
+
+`
 
 export default function OpenWeather() {
 
@@ -12,7 +26,7 @@ export default function OpenWeather() {
     const [trigger, setTrigger] = useState(false);
     const [background, setBackground] = useState("Background");
   
-    var apiKey = process.env.NEXT_PUBLIC_openWeather;
+    var apiKey = process.env.NEXT_PUBLIC_OPENWEATHER;
     var units = "metric";
   
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}`;
@@ -41,19 +55,34 @@ export default function OpenWeather() {
       }
     }
     return (
-        <>
-        <input
+        <Wrapper>
+        <Row>
+          <SearchIcon style={{transform:'rotateY(180deg)', marginRight:'2%'}}></SearchIcon>
+
+          {
+            weather && weather.map((w, index) => {
+              return(
+                <div key={index}>
+                  {data.name}
+                  {data.sys.country}
+                </div>
+              )
+            })
+          }
+
+        </Row>
+        <Input
             type="text"
             value = {location}
             onChange= {event => setLocation(event.target.value)}
             placeholder = "Enter Location"
             onKeyDown= {searchLocation}/>
 
-        {
+        {/* {
           weather && weather.map((w, index) => {
             return (
               <div key={index}>
-                {/* <Card
+                <Card
                 temp={data.main.temp}
                 city={data.name}
                 desc={w.description}
@@ -61,16 +90,16 @@ export default function OpenWeather() {
                 feels={data.main.feels_like}
                 gust={data.wind.gust}
                 icon={`/animations/${w.main.toLowerCase()}.json`}
-                /> */}
+                />
                 {data.name}
                 {data.sys.country}
                 {data.main.temp}
               </div>
             )
           })
-        }
+        } */}
 
-        </>
+        </Wrapper>
 
     )
 }
