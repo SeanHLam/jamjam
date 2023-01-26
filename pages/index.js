@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import OpenWeather from '../components/openweather/openWeather'
-
+import { useState } from "react";
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
 const REDIRECT_URI = "http://localhost:3000/home";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -16,6 +16,7 @@ const RESPONSE_TYPE = "token";
 
 
 export default function Home() {
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -32,7 +33,10 @@ export default function Home() {
           <Button variant="outlined">Outlined</Button>
 
         </Stack>
-          <OpenWeather></OpenWeather>
+
+
+        <OpenWeather></OpenWeather>
+
       </main>
 
 
