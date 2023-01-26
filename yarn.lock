@@ -418,6 +418,13 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@lottiefiles/react-lottie-player@^3.5.0-beta.10":
+  "integrity" "sha512-uIUTgj/dKvkbHT2F92/HRF/EFp3PRcVdekZsISFGHdeh3sF7Wsv6nXAxPjoPbCB/tQgmUxdGNESRoFK95lvY2Q=="
+  "resolved" "https://registry.npmjs.org/@lottiefiles/react-lottie-player/-/react-lottie-player-3.5.0-beta.10.tgz"
+  "version" "3.5.0-beta.10"
+  dependencies:
+    "lottie-web" "^5.10.0"
+
 "@mui/base@5.0.0-alpha.115":
   "integrity" "sha512-OGQ84whT/yNYd6xKCGGS6MxqEfjVjk5esXM7HP6bB2Rim7QICUapxZt4nm8q39fpT08rNDkv3xPVqDDwRdRg1g=="
   "resolved" "https://registry.npmjs.org/@mui/base/-/base-5.0.0-alpha.115.tgz"
@@ -437,7 +444,14 @@
   "resolved" "https://registry.npmjs.org/@mui/core-downloads-tracker/-/core-downloads-tracker-5.11.6.tgz"
   "version" "5.11.6"
 
-"@mui/material@^5.11.6":
+"@mui/icons-material@^5.11.0":
+  "integrity" "sha512-I2LaOKqO8a0xcLGtIozC9xoXjZAto5G5gh0FYUMAlbsIHNHIjn4Xrw9rvjY20vZonyiGrZNMAlAXYkY6JvhF6A=="
+  "resolved" "https://registry.npmjs.org/@mui/icons-material/-/icons-material-5.11.0.tgz"
+  "version" "5.11.0"
+  dependencies:
+    "@babel/runtime" "^7.20.6"
+
+"@mui/material@^5.0.0", "@mui/material@^5.11.6":
   "integrity" "sha512-MzkkL5KC2PCkFiv8cLpkzgLUPXSrAtnvJBR0emV7mLVWbkwV3n5832vjBx154B6R032fHjFTziTh7YEb50nK6Q=="
   "resolved" "https://registry.npmjs.org/@mui/material/-/material-5.11.6.tgz"
   "version" "5.11.6"
@@ -515,6 +529,11 @@
   "version" "13.1.2"
   dependencies:
     "glob" "7.1.7"
+
+"@next/font@^13.1.5":
+  "integrity" "sha512-6M5R6yC3JkdJiqo/YJxDp6+0vDn0smXOAzl8uHt4qmDS2u53ji/19K0HM51d+5kg8xntDi+N2hw7YjaU9inkNA=="
+  "resolved" "https://registry.npmjs.org/@next/font/-/font-13.1.5.tgz"
+  "version" "13.1.5"
 
 "@next/swc-darwin-x64@13.1.2":
   "integrity" "sha512-JbDZjaTvL8gyPC5TAH6OnD4jmXPkyUxRYPvu08ZmhT/XAFBb/Cso0BdXyDax/BPCG70mimP9d3hXNKNq+A0VtQ=="
@@ -2078,6 +2097,11 @@
   dependencies:
     "js-tokens" "^3.0.0 || ^4.0.0"
 
+"lottie-web@^5.10.0":
+  "integrity" "sha512-d0PFIGiwuMsJYaF4uPo+qG8dEorlI+xFI2zrrFtE1bGO4WoLIz+NjremxEq1swpR7juR10aeOtmNh3d6G3ub0A=="
+  "resolved" "https://registry.npmjs.org/lottie-web/-/lottie-web-5.10.2.tgz"
+  "version" "5.10.2"
+
 "lru-cache@^5.1.1":
   "integrity" "sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w=="
   "resolved" "https://registry.npmjs.org/lru-cache/-/lru-cache-5.1.1.tgz"
@@ -2430,7 +2454,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@^17.0.0 || ^18.0.0", "react@^18.2.0", "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=16.6.0", "react@>=16.8.0", "react@18.2.0":
+"react@^17.0.0 || ^18.0.0", "react@^18.2.0", "react@>= 16.8.0", "react@>= 16.8.0 || 17.x.x || ^18.0.0-0", "react@>=16.6.0", "react@>=16.8.0", "react@16 - 18", "react@18.2.0":
   "integrity" "sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   "version" "18.2.0"
