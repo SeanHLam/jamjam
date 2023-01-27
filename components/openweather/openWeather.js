@@ -3,12 +3,14 @@ import styles from "../../styles/Home.module.css";
 import { useState } from 'react'; 
 import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
-import AppText from '../apptext/appText';
+import AppText from '../apptext/apptext';
 import { Player } from '@lottiefiles/react-lottie-player';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+
 
 
 const Wrapper = styled.div`
@@ -127,8 +129,9 @@ export default function OpenWeather() {
                     <Row>
                       <Column>
                         <Row key={index} style={{alignItems:'flex-end'}}>
-                          <AppText text={city} style='headerSmall'></AppText>
+                          {/* <AppText text={city} style='headerSmall'></AppText>
                           <AppText text={data.sys.country} style='bodySmall' c='gray'></AppText>
+                           */}
                         </Row>
                         {data.main.temp} °C
                       </Column>

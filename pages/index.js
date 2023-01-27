@@ -6,6 +6,9 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import OpenWeather from '../components/openweather/openWeather'
 import { useState } from "react";
+import { Typography } from "@mui/material";
+import AppText from "../components/apptext/apptext";
+
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
 const REDIRECT_URI = "http://localhost:3000/home";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -36,6 +39,16 @@ export default function Home() {
 
 
         <OpenWeather></OpenWeather>
+
+
+        {/* MUI typography */}
+        <Typography variant="header">VANCOUVER</Typography>
+        <Typography variant="bodyLarge">CA</Typography>
+
+        
+        {/* MUI typography inside AppText */}
+        <AppText variant='bodySmall' c='sand' text='hello sean'/>
+        <AppText variant='header' c='pink' text='hello thi'/>
 
       </main>
 
