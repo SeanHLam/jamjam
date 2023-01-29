@@ -16,10 +16,9 @@ const RESPONSE_TYPE = "token";
 
 
 
-
-
-export default function Home() {
+export default function Login() {
   
+
   return (
     <div className={styles.container}>
       <Head>
@@ -29,6 +28,10 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+
+          <Button href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} variant="contained">Contained</Button>
+          
+
 
         <Stack spacing={2} direction="row">
           <Button variant="text">Text</Button>
