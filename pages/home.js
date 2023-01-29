@@ -12,7 +12,10 @@ const REDIRECT_URI = "http://localhost:3000/home";
 const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
 
-const [token, setToken] = useState("")
+
+
+export default function Home() {
+  const [token, setToken] = useState("")
 
 useEffect(() => {
     const hash = window.location.hash
@@ -33,8 +36,6 @@ const logout = () => {
     setToken("")
     window.localStorage.removeItem("token")
 }
-
-export default function Home() {
   return (
     <div >
       
