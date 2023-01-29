@@ -36,9 +36,11 @@ const logout = () => {
     setToken("")
     window.localStorage.removeItem("token")
 }
+
+
   return (
     <div >
-      
+      <Button onClick={logout}>Logout</Button>
     
 
     </div>
