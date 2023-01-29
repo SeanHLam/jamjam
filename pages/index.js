@@ -12,10 +12,7 @@ const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
 
 
-
-
-
-export default function Home() {
+export default function Login() {
   return (
     <div className={styles.container}>
       <Head>
@@ -25,13 +22,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-
-        <Stack spacing={2} direction="row">
-          <Button variant="text">Text</Button>
-          <Button variant="contained">Contained</Button>
-          <Button variant="outlined">Outlined</Button>
-
-        </Stack>
+          <Button href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} variant="contained">Contained</Button>
+          
           <OpenWeather></OpenWeather>
       </main>
 
