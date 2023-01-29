@@ -116,19 +116,45 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .card,
   .footer {
     border-color: #222;
   }
+
   .code {
     background: #111;
   }
+
   .logo img {
     filter: invert(1);
   }
 }
 
-.animation{
-  height:100px;
-  width:100px;
+.animation {
+  height: 100px;
+  width: 100px;
+}
+
+.creatorPick {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+}
+
+.pickPlay {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.pickText {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.pickImage {
+  margin-bottom: 1rem;
+  object-fit: cover;
 }
