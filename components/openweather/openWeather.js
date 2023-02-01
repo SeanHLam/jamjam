@@ -9,27 +9,32 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
-import Typography from '@mui/material/Typography';
-
 
 
 const Wrapper = styled.div`
-width:100%;
 `
 
 const Container = styled.div`
-width: 100%;
+width: 30rem;
+max-width: 90vw;
+height: 15rem;
 padding: 5%;
 background-color: #DD727F;
 position:relative;
+contain:paint;
 `
 
 const OvalOverlay = styled.div`
-width:100%;
-position:absolute;
-bottom:0;
+width: 18rem;
+height: 15rem;
+border-radius: 50%;
 background-color:#F3F3F0;
-z-index;
+transform: scaleX(2.1);
+position:absolute;
+margin:auto;
+top:40%;
+right:0;
+left:0;
 `
 
 const Row = styled.div`
@@ -46,15 +51,15 @@ const Input = styled(TextField)`
 outline:0;
 background-color:transparent;
 border:0;
-font-size:50px;
-width: 60%;
+width: 100%;
 `
+
 const style = {
   position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '25rem',
+  width: '80%',
   bgcolor: 'background.paper',
   borderRadius: '10px',
   display:'flex',
@@ -120,20 +125,24 @@ export default function OpenWeather() {
     return (
         <Wrapper>
           <Container>
+            <OvalOverlay/>
 
             <Row>
-              <SearchIcon onClick={handleOpen} style={{transform:'rotateY(-180deg)'}}></SearchIcon>
+              <Row>
+              <SearchIcon onClick={handleOpen} color='sand' style={{transform:'rotateY(-180deg)'}}></SearchIcon>
+
+              </Row>
               {
                 weather && weather.map((w, index) => {
                   return (
                     <Row>
                       <Column>
                         <Row key={index} style={{alignItems:'flex-end'}}>
-                          {/* <AppText text={city} style='headerSmall'></AppText>
-                          <AppText text={data.sys.country} style='bodySmall' c='gray'></AppText>
-                           */}
+                          <AppText text={city} variant='headerSmall' c='sand'></AppText>
+                          <AppText text={data.sys.country} variant='bodySmall' c='gray'></AppText>
                         </Row>
-                        {data.main.temp} °C
+                        <AppText text={data.main.temp} variant='header' c='sand'>°C</AppText>
+                        <AppText text={w.main} variant='bodySmall' c='gray'></AppText>
                       </Column>
                       <Row>
                       <Player
@@ -146,6 +155,18 @@ export default function OpenWeather() {
                     )
                 })
               }
+
+              {trigger ?
+                <Column>
+                  <Player
+                  className={styles.animation}
+                  autoplay
+                  loop
+                  src='/animations/error.json'
+                  ></Player>
+                  <AppText text={errorMessage} c='gray' variant='bodySmall'></AppText>
+                </Column>
+              : ""}
             </Row>
 
             <Modal
@@ -155,10 +176,8 @@ export default function OpenWeather() {
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description">
               <Box sx={style}>
+                <Column style={{marginRight:'2%'}}>
                 <Input
-                sx={{
-                  color:'red'
-                }}
                 id="standard-basic"
                 label="Enter Location"
                 type="text"
@@ -167,7 +186,9 @@ export default function OpenWeather() {
                 size='small'
                 // onKeyDown= {searchLocation}
                 />
-                <Button variant="contained" onClick={searchLocation}> Search </Button>
+                { trigger ? <AppText text={errorMessage} variant='bodySmall' c='gray'></AppText> : ''}
+                </Column>
+                <Button size="extraSmall" variant="contained" onClick={searchLocation}> Search </Button>
               </Box>
             </Modal>
             
