@@ -44,18 +44,6 @@ export default function Login() {
         <OpenWeather></OpenWeather>
 
         <CreatorCard></CreatorCard>
-
-
-        {/* MUI typography */}
-        <Typography variant="header">VANCOUVER</Typography>
-        <Typography variant="bodyLarge">CA</Typography>
-
-
-        {/* MUI typography inside AppText */}
-        <AppText c='jetBlack' text='CREATOR&#39;S PICK'></AppText>
-        <AppText variant='bodySmall' c='sand' text='hello sean' />
-        <AppText variant='header' c='pink' text='hello thi' />
-
       </main>
 
     </div>

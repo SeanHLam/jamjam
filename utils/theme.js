@@ -5,8 +5,12 @@ export const theme = createTheme({
     primary: {
         light: '#F3F3F0',
         main: '#DD727F',
+        sand: '#ECEDE8',
         contrastText: '#fff',
       },
+    sand: {
+      main: '#ECEDE8'
+    }
  },
  typography: {
   header: {
@@ -14,7 +18,7 @@ export const theme = createTheme({
     fontFamily: "Righteous",
   },
   headerSmall: {
-    fontSize: '16px',
+    fontSize: '18px',
     fontFamily: "Righteous",
   },
   bodyLarge: {
@@ -26,7 +30,7 @@ export const theme = createTheme({
     fontFamily: "Sarabun",
   },
   bodySmall: {
-    fontSize: '12px',
+    fontSize: '14px',
     fontFamily: "Sarabun",
   },
   pill: {
@@ -41,5 +45,30 @@ export const theme = createTheme({
     fontSize: '16px',
     fontFamily: "Righteous",
   },
+},
+
+components:{
+  MuiButton: {
+    variants: [
+      {
+        props: {
+          size: "extraSmall"
+        },
+        style: {
+          fontSize: 14,
+          padding: "0.5rem 1rem"
+        }
+      },
+      {
+        props: {
+          size: "small"
+        },
+        style: {
+          fontSize: 24,
+          padding: "8px 4px"
+        }
+      }
+    ]
+  }
 }
 });

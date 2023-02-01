@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import OpenWeather from "../components/openweather/openWeather";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import PillMenuCard from "../components/pillmenu/pillMenuCard";
 
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -91,6 +92,7 @@ export default function Music() {
       <Button onClick={randomSong} variant="contained">
         Random Song
       </Button>
+      <PillMenuCard/>
     </div>
   );
 }
