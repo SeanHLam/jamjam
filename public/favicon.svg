@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34.16 20.96">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #dd727f;
+      }
+
+      .cls-2 {
+        fill: #151513;
+      }
+    </style>
+  </defs>
+  <g id="logo_pink" data-name="logo pink">
+    <g>
+      <path class="cls-1" d="m1.88,2.82c4.34-2.5,6.03,2.33,6.82,2.74C9.21,4.97,7.88.12,13.51,0c3.11-.07,3.11,4.11,3.4,5.67,1.95-1.14,13.21-4.8,14.59-1.65,2.93,6.73-19.1,7.94-19.75,11.22,2.29,3.05,21.55-9.54,22.39-2.77.66,5.37-24.41,9.79-28.84,8.13C-.13,18.56-1.6,4.83,1.88,2.82Z"/>
+      <ellipse class="cls-2" cx="13.33" cy="4.72" rx="2.16" ry=".9" transform="translate(7.93 17.79) rotate(-87.04)"/>
+      <ellipse class="cls-2" cx="4.24" cy="7.17" rx=".9" ry="2.16" transform="translate(-3.56 4.26) rotate(-38.91)"/>
+      <ellipse class="cls-2" cx="26.63" cy="5.72" rx=".23" ry=".84" transform="translate(.13 12) rotate(-25.46)"/>
+      <ellipse class="cls-2" cx="28.62" cy="5.21" rx=".23" ry=".84" transform="translate(-.1 .61) rotate(-1.22)"/>
+    </g>
+  </g>
+</svg>
