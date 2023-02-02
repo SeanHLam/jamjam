@@ -60,7 +60,8 @@ components:{
         },
         style: {
           fontSize: 14,
-          padding: "0.5rem 1rem"
+          padding: "0.375em 1em",
+          borderRadius: '10px',
         }
       },
       {
@@ -68,8 +69,19 @@ components:{
           size: "small"
         },
         style: {
+          fontSize: 19,
+          padding: "0.5em 1.25em",
+          borderRadius: '10px',
+        }
+      },
+      {
+        props: {
+          size: "medium"
+        },
+        style: {
           fontSize: 24,
-          padding: "8px 4px"
+          padding: "0.625em 1.5em",
+          borderRadius: '10px',
         }
       }
     ]

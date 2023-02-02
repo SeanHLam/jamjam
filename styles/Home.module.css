@@ -10,7 +10,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  font-size: 18px;
 }
 
 .footer {
@@ -109,13 +108,6 @@
   margin-left: 0.5rem;
 }
 
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}
-
 @media (prefers-color-scheme: dark) {
 
   .card,
@@ -172,11 +164,18 @@
   object-fit: cover;
 }
 
+.columncenter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 /* Mobile */
 
-@media (max-width: 600px){
-  .test{
-    font-size: 14px;
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
   }
 }
