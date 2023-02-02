@@ -10,6 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-size: 18px;
 }
 
 .footer {
@@ -143,6 +144,9 @@
 .animation {
   height: 100px;
   width: 100px;
+  position:absolute;
+  top:-20%;
+  z-index:5;
 }
 
 .creatorPick {
@@ -166,4 +170,13 @@
 .pickImage {
   margin-bottom: 1rem;
   object-fit: cover;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px){
+  .test{
+    font-size: 14px;
+  }
 }

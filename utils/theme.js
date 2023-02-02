@@ -9,7 +9,11 @@ export const theme = createTheme({
         contrastText: '#fff',
       },
     sand: {
-      main: '#ECEDE8'
+      main: '#ECEDE8',
+    },
+    dark: {
+      main: '#29252D',
+      contrastText:'#ECEDE8'
     }
  },
  typography: {

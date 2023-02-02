@@ -12,16 +12,20 @@ import TextField from '@mui/material/TextField';
 
 
 const Wrapper = styled.div`
+height:15rem;
+width:30rem;
+max-width: 90vw;
+position:relative;
 `
 
 const Container = styled.div`
-width: 30rem;
-max-width: 90vw;
-height: 15rem;
-padding: 5%;
+width:100%;
+padding:5%;
+height:100%;
 background-color: #DD727F;
 position:relative;
-contain:paint;
+border-radius:10px;
+overflow:hidden;
 `
 
 const OvalOverlay = styled.div`
@@ -65,10 +69,11 @@ const style = {
   display:'flex',
   justifyContent:'center',
   alignItems:'center',
+  gap:'5%',
   boxShadow: 24,
   pt: 2,
-  px: 4,
-  pb: 3,
+  px: 3,
+  pb: 2,
 };
 
 export default function OpenWeather() {
@@ -78,8 +83,8 @@ export default function OpenWeather() {
     const [weather, setWeather] = useState();
     const [errorMessage, setErrorMessage] = useState('');
     const [trigger, setTrigger] = useState(false);
-    const [background, setBackground] = useState("Background");
-    const [city, setCity] = useState("Vancouver");
+    const [background, setBackground] = useState("");
+    const [city, setCity] = useState("VANCOUVER");
     const [country, setCountry] = useState("CA");
     const [id, setId] = useState('6173331');
     const [open, setOpen] = useState(false);
@@ -111,7 +116,7 @@ export default function OpenWeather() {
           setBackground(response.data.weather[0].main.toLowerCase());
           setCity(response.data.name.toUpperCase());
           setCountry(response.data.sys.country);
-          handleClose()
+          handleClose();
         }).catch(err => {
           console.log(err);
           setErrorMessage("Invalid Location. Please enter another location!");
@@ -123,35 +128,38 @@ export default function OpenWeather() {
       }
     }
     return (
-        <Wrapper>
-          <Container>
-            <OvalOverlay/>
+        <Wrapper>  
 
-            <Row>
-              <Row>
+          {
+            weather && weather.map((w, index) => {
+              return (
+                  <Player
+                    className={styles.animation}
+                    autoplay
+                    loop
+                    src={`/animations/${w.main.toLowerCase()}.json`}/>
+                )
+            })
+          }  
+
+          <Container>
+
+          <OvalOverlay/>
+          
+            <Column>
+              <Row style={{alignItems:'center', height:'100%', gap:'5%'}}>
               <SearchIcon onClick={handleOpen} color='sand' style={{transform:'rotateY(-180deg)'}}></SearchIcon>
+              <AppText text={city} variant='headerSmall' c='sand'></AppText>
+              <AppText text={country} variant='bodySmall' c='gray'></AppText>
 
               </Row>
               {
                 weather && weather.map((w, index) => {
                   return (
-                    <Row>
                       <Column>
-                        <Row key={index} style={{alignItems:'flex-end'}}>
-                          <AppText text={city} variant='headerSmall' c='sand'></AppText>
-                          <AppText text={data.sys.country} variant='bodySmall' c='gray'></AppText>
-                        </Row>
                         <AppText text={data.main.temp} variant='header' c='sand'>°C</AppText>
                         <AppText text={w.main} variant='bodySmall' c='gray'></AppText>
                       </Column>
-                      <Row>
-                      <Player
-                        className={styles.animation}
-                        autoplay
-                        loop
-                        src={`/animations/${w.main.toLowerCase()}.json`}></Player>
-                      </Row>
-                    </Row>
                     )
                 })
               }
@@ -167,7 +175,7 @@ export default function OpenWeather() {
                   <AppText text={errorMessage} c='gray' variant='bodySmall'></AppText>
                 </Column>
               : ""}
-            </Row>
+            </Column>
 
             <Modal
             backdrop
@@ -176,7 +184,7 @@ export default function OpenWeather() {
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description">
               <Box sx={style}>
-                <Column style={{marginRight:'2%'}}>
+                <Column>
                 <Input
                 id="standard-basic"
                 label="Enter Location"
@@ -184,16 +192,14 @@ export default function OpenWeather() {
                 value = {location}
                 onChange= {e => setLocation(e.target.value)}
                 size='small'
-                // onKeyDown= {searchLocation}
                 />
                 { trigger ? <AppText text={errorMessage} variant='bodySmall' c='gray'></AppText> : ''}
                 </Column>
-                <Button size="extraSmall" variant="contained" onClick={searchLocation}> Search </Button>
+                <Button color="dark" size="extraSmall" variant="contained" onClick={searchLocation}> Search </Button>
               </Box>
             </Modal>
-            
-
-          </Container>
+            </Container>
+          
         </Wrapper>
 
     )
