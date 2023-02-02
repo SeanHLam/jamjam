@@ -1,4 +1,3 @@
-
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -30,20 +29,10 @@ export default function Login() {
 
       <main className={styles.main}>
 
+          <Image src="/jamjam.svg" alt="jamjam logo" width={300} height={300} />
+
           <Button href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} variant="contained">Login To Spotify</Button>
-          
-
-
-        <Stack spacing={2} direction="row">
-          <Button variant="text">Text</Button>
-          <Button variant="contained">Contained</Button>
-          <Button variant="outlined">Outlined</Button>
-
-        </Stack>
-
-        <OpenWeather></OpenWeather>
-
-        <CreatorCard></CreatorCard>
+          <div className={styles.test}> Reason for choosing: Lörem ipsum trara myr. Ojipåde disade på primafoni eurobävning domydat. Lörem ipsum trara myr. Ojipåde disade. </div>
       </main>
 
     </div>
