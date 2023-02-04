@@ -124,20 +124,12 @@
   }
 }
 
-.pill {
-  background-color:transparent;
-  border-radius:20px;
-  text-align:center;
-  border: 1px solid #29252D;
-  width:100%;
-  white-space: nowrap;
-}
-
 .animation {
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   position:absolute;
-  top:-20%;
+  top:-18%;
+  right: 5%;
   z-index:5;
 }
 
@@ -177,5 +169,9 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .weatherInfo {
+    padding: 0.25em 2em;
   }
 }
