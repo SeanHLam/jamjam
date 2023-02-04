@@ -12,10 +12,11 @@ import TextField from '@mui/material/TextField';
 
 
 const Wrapper = styled.div`
-height:15rem;
-width:30rem;
+height:15em;
+width:30em;
 max-width: 90vw;
 position:relative;
+margin: 3em 0em;
 `
 
 const Container = styled.div`
@@ -36,7 +37,7 @@ background-color:#F3F3F0;
 transform: scaleX(2.1);
 position:absolute;
 margin:auto;
-top:40%;
+top:45%;
 right:0;
 left:0;
 `
@@ -44,11 +45,14 @@ left:0;
 const Row = styled.div`
 display:flex;
 flex-direction:row;
+max-width:100%;
+width:70%;
 `
 
 const Column = styled.div`
 display:flex;
 flex-direction:column;
+width:100%;
 `
 
 const Input = styled(TextField)`
@@ -71,9 +75,9 @@ const style = {
   alignItems:'center',
   gap:'5%',
   boxShadow: 24,
-  pt: 2,
-  px: 3,
-  pb: 2,
+  pt: 1.5,
+  px: 1.5,
+  pb: 1.5,
 };
 
 export default function OpenWeather() {
@@ -147,17 +151,17 @@ export default function OpenWeather() {
           <OvalOverlay/>
           
             <Column>
-              <Row style={{alignItems:'center', height:'100%', gap:'5%'}}>
+              <Row style={{alignItems:'center', gap:'3%'}}>
               <SearchIcon onClick={handleOpen} color='sand' style={{transform:'rotateY(-180deg)'}}></SearchIcon>
-              <AppText text={city} variant='headerSmall' c='sand'></AppText>
+              <AppText text={city} variant='headerSmall'  wdth='100%' c='sand'></AppText>
               <AppText text={country} variant='bodySmall' c='gray'></AppText>
 
               </Row>
               {
                 weather && weather.map((w, index) => {
                   return (
-                      <Column>
-                        <AppText text={data.main.temp} variant='header' c='sand'>°C</AppText>
+                      <Column className={styles.weatherInfo}>
+                        <AppText text={`${data.main.temp} °`} variant='header' c='sand'>°C</AppText>
                         <AppText text={w.main} variant='bodySmall' c='gray'></AppText>
                       </Column>
                     )

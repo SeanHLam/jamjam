@@ -2,6 +2,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import styled from "styled-components";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import OpenWeather from '../components/openweather/openWeather'
@@ -13,11 +14,20 @@ const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
 const RESPONSE_TYPE = "token";
 
 
+export const Wrapper = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+width:100vw;
+padding: 2em 5em;
+min-height:100vh;
+`
+
 
 export default function Home() {
   const [token, setToken] = useState("")
 
-useEffect(() => {
+  useEffect(() => {
     const hash = window.location.hash
     let token = window.localStorage.getItem("token")
 
@@ -39,10 +49,10 @@ const logout = () => {
 
 
   return (
-    <div >
+    <Wrapper >
       <Button onClick={logout}>Logout</Button>
     
 
-    </div>
+    </Wrapper>
   );
 }

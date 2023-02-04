@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../styles/variables.css";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "../utils/theme";
 import createEmotionCache from "../utils/createEmotionCache";
