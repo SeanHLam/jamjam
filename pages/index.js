@@ -69,7 +69,7 @@ export default function Login() {
             className={styles.columncenter}
           >
       
-            <Image src="/logo.svg" alt="jamjam logo" width={250} height={250} style={{margin:'0 0 3em 0'}}/>
+            <Image src="/logo.svg" alt="JamJam logo" width={250} height={250} style={{margin:'0 0 3em 0'}}/>
 
             <motion.div variants={item}>
               <motion.div

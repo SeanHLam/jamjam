@@ -22,7 +22,7 @@ export default function PillMenuCard(
         <Wrapper>
             <Row>
                 {pillCategory.map ((o,i) => 
-                <PillMenu category={pillCategory[i]}>
+                <PillMenu category={pillCategory[i]} key={i}>
                 </PillMenu>
                 )}
             </Row>
