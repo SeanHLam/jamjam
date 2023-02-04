@@ -174,4 +174,16 @@
   .weatherInfo {
     padding: 0.25em 2em;
   }
+  
+  .nav-pop{
+    position:absolute;
+    width:100%;
+  }
+
+  .navscroll{
+    box-shadow: 0px 1px 5px rgba(0,0,0,.1);
+    transition:1s ease;
+    backdrop-filter: blur(3px);
+  }
+
 }
