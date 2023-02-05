@@ -59,6 +59,7 @@ const logout = () => {
       <Navigation/>
       <Wrapper>
         <Button onClick={logout}>Logout</Button>
+        <Button href={"/music"}>Music</Button>
       
 
       </Wrapper>

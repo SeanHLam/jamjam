@@ -20,6 +20,7 @@ export default function Music() {
   };
   const [song, setSong] = useState();
   const [token, setToken] = useState("");
+  const [albumImage, setAlbumImage] = useState("");
   const searchArray = [
     "%25a%25",
     "a%25",
@@ -30,6 +31,7 @@ export default function Music() {
     "%25o%25",
     "o%25",
   ];
+
   const randomSearch =
     searchArray[Math.floor(Math.random() * searchArray.length)];
   const randomOffset = randomIntFromInterval(1, 1000);
@@ -37,7 +39,6 @@ export default function Music() {
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
-
     if (!token && hash) {
       token = hash
         .substring(1)
@@ -48,45 +49,60 @@ export default function Music() {
       window.location.hash = "";
       window.localStorage.setItem("token", token);
     }
-
     setToken(token);
+
+    
   }, []);
 
-  //   const randomSong = async (e) => {
-  //     e.preventDefault();
-  //     const { data } = await axios.get(
-  //       `"https://api.spotify.com/v1/search?query=${randomSearch}&offset=${randomOffset}&limit=1&type=track&market=NL";`,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //         params: {
-  //           q: searchKey,
-  //           type: "track",
-  //         },
-  //       }
-  //     );
+  function getRandomSearch() {
+    // A list of all characters that can be chosen.
+    const characters = "abcdefghijklmnopqrstuvwxyz";
+
+    // Gets a random character from the characters string.
+    const randomCharacter = characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+    let randomSearch = "";
+
+    // Places the wildcard character at the beginning, or both beginning and end, randomly.
+    switch (Math.round(Math.random())) {
+      case 0:
+        randomSearch = randomCharacter + "%";
+        break;
+      case 1:
+        randomSearch = "%" + randomCharacter + "%";
+        break;
+    }
+
+    return randomSearch;
+  }
 
   const randomSong = async (e) => {
-    e.preventDefault()
-    const {data} = await axios.get("https://api.spotify.com/v1/search", {
+    e.preventDefault();
+    const { data } = await axios
+      .get("https://api.spotify.com/v1/search", {
         headers: {
-            Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         params: {
-            q: "beatles",
-            type: "artist"
+          type: "track",
+          q: getRandomSearch(),
+          offset: randomOffset,
+        },
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log(error.response.data);
         }
-        
-    }
-    ).catch((error) => {
-        if( error.response ){
-            console.log(error.response.data); 
-        }
-    });
+      });
 
-    console.log(data)
-}
+    console.log(data);
+    setSong(data.tracks.items[0]);
+    function play() {
+      var audio = document.getElementById("audio");
+      audio.play();
+    }
+  };
 
   return (
     <>
@@ -99,8 +115,27 @@ export default function Music() {
         <Button onClick={randomSong} variant="contained">
           Random Song
         </Button>
-        <PillMenuCard/>
-        <OpenWeather/>
+        <PillMenuCard />
+        {song && (
+          
+          <div>
+            <input type="button" value="PLAY" onclick="play()"></input>
+            <audio id="audio" src={song.preview_url}></audio>
+            <h1>{song.name}</h1>
+            <h2>{song.artists[0].name}</h2>
+            <iframe
+              src={`https://open.spotify.com/embed/track/${song.id}`}
+              width="300"
+              height="380"
+              frameBorder="0"
+              allowtransparency="true"
+              allow="encrypted-media"
+            ></iframe>
+          </div>
+        )}
+
+        <OpenWeather />
+
       </Wrapper>
     </>
   );
