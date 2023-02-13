@@ -9,29 +9,39 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 
 
-// const bull = (
-//   );
-
 export default function CreatorCard() {
+    const handleClick = (path) => {
+        if (path === "/music") {
+            console.log("Open Music Roulette");
+        }
+    }
     return (
-        <Card className={styles.creatorPick}
+
+        <Card className={styles.pickCard}
             sx={{
-                bgcolor: '#aac5bf',
+                bgcolor: "#F3F3F0",
                 maxWidth: "100%",
                 minWidth: "30%",
             }}>
 
             <div className={styles.pickPlay}>
                 <Image className={styles.pickImage} src="/favicon.ico" width="100" height="100"></Image>
-                <Button variant="contained">Play</Button>
+                <Button
+                    // variant="contained"
+                    size="small"
+                    bg="pink"
+                    onClick={() => handleClick("/music")}
+                    href="/music">
+                    <AppText variant='buttonSmall' c='sand' text='Play'></AppText>
+                </Button>
             </div>
 
             <div className={styles.pickText}>
                 <AppText c='jetBlack' text='SONG NAME'></AppText>
-                <AppText variant='bodySmall' c='jetBlack' text='Artist'></AppText>
-                <AppText variant='bodyLarge' c='jetBlack' text='This song is awesome'></AppText>
+                <AppText variant='bodyLarge' c='jetBlack' text='Artist'></AppText>
+                <AppText variant='bodySmall' c='jetBlack' text='This song is awesome'></AppText>
             </div>
 
-        </Card>
+        </Card >
     )
 }

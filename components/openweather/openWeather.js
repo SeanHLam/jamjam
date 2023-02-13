@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import styles from "../../styles/Home.module.css";
-import { useState } from 'react'; 
+import { useState } from 'react';
 import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
 import AppText from '../apptext/apptext';
@@ -70,10 +70,10 @@ const style = {
   width: '80%',
   bgcolor: 'background.paper',
   borderRadius: '10px',
-  display:'flex',
-  justifyContent:'center',
-  alignItems:'center',
-  gap:'5%',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  gap: '5%',
   boxShadow: 24,
   pt: 1.5,
   px: 1.5,
@@ -82,35 +82,35 @@ const style = {
 
 export default function OpenWeather() {
 
-    const [location, setLocation] = useState('');
-    const [data, setData] = useState({});
-    const [weather, setWeather] = useState();
-    const [errorMessage, setErrorMessage] = useState('');
-    const [trigger, setTrigger] = useState(false);
-    const [background, setBackground] = useState("");
-    const [city, setCity] = useState("VANCOUVER");
-    const [country, setCountry] = useState("CA");
-    const [id, setId] = useState('6173331');
-    const [open, setOpen] = useState(false);
-  
-    const handleOpen = () => {
-      setOpen(true);
-    };
-    const handleClose = () => {
-      setOpen(false);
-    };
+  const [location, setLocation] = useState('');
+  const [data, setData] = useState({});
+  const [weather, setWeather] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
+  const [trigger, setTrigger] = useState(false);
+  const [background, setBackground] = useState("");
+  const [city, setCity] = useState("VANCOUVER");
+  const [country, setCountry] = useState("CA");
+  const [id, setId] = useState('6173331');
+  const [open, setOpen] = useState(false);
 
-    var apiKey = process.env.NEXT_PUBLIC_OPENWEATHER;
-    var units = "metric";
-  
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}`;
-    console.log(url)
-  
-  
-    const searchLocation = (e) => {
-      if(e) {
-        axios.get(url)
-        .then((response)=> {
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  var apiKey = process.env.NEXT_PUBLIC_OPENWEATHER;
+  var units = "metric";
+
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}`;
+  console.log(url)
+
+
+  const searchLocation = (e) => {
+    if (e) {
+      axios.get(url)
+        .then((response) => {
           console.clear()
           setData(response.data);
           console.log(response.data);
@@ -128,83 +128,83 @@ export default function OpenWeather() {
           setWeather();
           setTrigger(true);
         })
-        setLocation('')
-      }
+      setLocation('')
     }
-    return (
-        <Wrapper>  
+  }
+  return (
+    <Wrapper>
 
+      {
+        weather && weather.map((w, index) => {
+          return (
+            <Player
+              className={styles.animation}
+              autoplay
+              loop
+              src={`/animations/${w.main.toLowerCase()}.json`} />
+          )
+        })
+      }
+
+      <Container>
+
+        <OvalOverlay />
+
+        <Column>
+          <Row style={{ alignItems: 'center', gap: '3%' }}>
+            <SearchIcon onClick={handleOpen} color='sand' style={{ transform: 'rotateY(-180deg)' }}></SearchIcon>
+            <AppText text={city} variant='headerSmall' wdth='100%' c='sand'></AppText>
+            <AppText text={country} variant='bodySmall' c='gray'></AppText>
+
+          </Row>
           {
             weather && weather.map((w, index) => {
               return (
-                  <Player
-                    className={styles.animation}
-                    autoplay
-                    loop
-                    src={`/animations/${w.main.toLowerCase()}.json`}/>
-                )
-            })
-          }  
-
-          <Container>
-
-          <OvalOverlay/>
-          
-            <Column>
-              <Row style={{alignItems:'center', gap:'3%'}}>
-              <SearchIcon onClick={handleOpen} color='sand' style={{transform:'rotateY(-180deg)'}}></SearchIcon>
-              <AppText text={city} variant='headerSmall'  wdth='100%' c='sand'></AppText>
-              <AppText text={country} variant='bodySmall' c='gray'></AppText>
-
-              </Row>
-              {
-                weather && weather.map((w, index) => {
-                  return (
-                      <Column className={styles.weatherInfo}>
-                        <AppText text={`${data.main.temp} °`} variant='header' c='sand'>°C</AppText>
-                        <AppText text={w.main} variant='bodySmall' c='gray'></AppText>
-                      </Column>
-                    )
-                })
-              }
-
-              {trigger ?
-                <Column>
-                  <Player
-                  className={styles.animation}
-                  autoplay
-                  loop
-                  src='/animations/error.json'
-                  ></Player>
-                  <AppText text={errorMessage} c='gray' variant='bodySmall'></AppText>
+                <Column className={styles.weatherInfo}>
+                  <AppText text={`${data.main.temp} °`} variant='header' c='sand'>°C</AppText>
+                  <AppText text={w.main} variant='bodySmall' c='gray'></AppText>
                 </Column>
-              : ""}
-            </Column>
+              )
+            })
+          }
 
-            <Modal
-            backdrop
-            open={open}
-            onBackdropClick={handleClose}
-            aria-labelledby="child-modal-title"
-            aria-describedby="child-modal-description">
-              <Box sx={style}>
-                <Column>
-                <Input
+          {trigger ?
+            <Column>
+              <Player
+                className={styles.animation}
+                autoplay
+                loop
+                src='/animations/error.json'
+              ></Player>
+              <AppText text={errorMessage} c='gray' variant='bodySmall'></AppText>
+            </Column>
+            : ""}
+        </Column>
+
+        <Modal
+          backdrop
+          open={open}
+          onBackdropClick={handleClose}
+          aria-labelledby="child-modal-title"
+          aria-describedby="child-modal-description">
+          <Box sx={style}>
+            <Column>
+              <Input
                 id="standard-basic"
                 label="Enter Location"
                 type="text"
-                value = {location}
-                onChange= {e => setLocation(e.target.value)}
+                value={location}
+                onChange={e => setLocation(e.target.value)}
                 size='small'
-                />
-                { trigger ? <AppText text={errorMessage} variant='bodySmall' c='gray'></AppText> : ''}
-                </Column>
-                <Button color="dark" size="extraSmall" variant="contained" onClick={searchLocation}> Search </Button>
-              </Box>
-            </Modal>
-            </Container>
-          
-        </Wrapper>
+              />
+              {trigger ? <AppText text={errorMessage} variant='bodySmall' c='gray'></AppText> : ''}
+            </Column>
+            <Button color="dark" size="extraSmall" variant="contained" onClick={searchLocation}> Search </Button>
+          </Box>
+        </Modal>
+      </Container>
 
-    )
+    </Wrapper>
+
+  )
 }

@@ -1,5 +1,5 @@
 import { Link, Typography } from "@mui/material";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import styles from "../../styles/Home.module.css";
@@ -22,7 +22,7 @@ z-index:10;
 `
 
 export default function Navigation() {
-    
+
     const [menu, setMenu] = useState(false)
     const [open, setOpen] = useState(false);
 
@@ -33,48 +33,48 @@ export default function Navigation() {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
-        window.onscroll = function() {
-        if (window.scrollY > 35) {
-            setScrolled(true);
-        } else if (window.scrollY < 35) {
-            setScrolled(false);
-        }
+        window.onscroll = function () {
+            if (window.scrollY > 35) {
+                setScrolled(true);
+            } else if (window.scrollY < 35) {
+                setScrolled(false);
+            }
         };
     }, []);
 
 
 
     const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '80%',
-    bgcolor: 'background.paper',
-    borderRadius: '10px',
-    display:'flex',
-    justifyContent:'center',
-    alignItems:'center',
-    gap:'5%',
-    boxShadow: 24,
-    pt: 1.5,
-    px: 1.5,
-    pb: 1.5,
-  };
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '80%',
+        bgcolor: 'background.paper',
+        borderRadius: '10px',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '5%',
+        boxShadow: 24,
+        pt: 1.5,
+        px: 1.5,
+        pb: 1.5,
+    };
 
     return (
         <Wrapper className={scrolled ? `${styles.navscroll}` : ""}>
-            <Image src="/logo.svg" alt="JamJam Logo" width={65} height={65}/>
+            <Image src="/logo.svg" alt="JamJam Logo" width={65} height={65} />
 
-            <GridViewRoundedIcon onClick={toggleMenu} color="primary" sx={{fontSize:40}}/>
+            <GridViewRoundedIcon onClick={toggleMenu} color="primary" sx={{ fontSize: 40 }} />
 
             <Modal
-            backdrop
-            open={menu}
-            onBackdropClick={() => setMenu(!menu)}
+                backdrop
+                open={menu}
+                onBackdropClick={() => setMenu(!menu)}
             >
                 <Box sx={style}>
-                 <div style={{position:'absolute'}}>hi</div>
+                    <div style={{ position: 'absolute' }}>hi</div>
                 </Box>
             </Modal>
 
