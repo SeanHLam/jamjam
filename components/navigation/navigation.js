@@ -7,22 +7,43 @@ import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Popover from '@mui/material/Popover';
-
+import { useRouter } from 'next/router'
+import AppText from "../apptext/apptext";
 
 const Wrapper = styled.div`
 width:100vw;
-background-color:transparent;
-padding:0.75em 2.5em;
+background-color: transparent;
+padding:0.3em 2.5em;
 display:flex;
 justify-content:space-between;
 align-items:center;
 position:sticky;
 top:0%;
 z-index:10;
+backdrop-filter:blur(1px);    
+/* filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06)); */
 `
 
-export default function Navigation() {
+const Text = styled(Typography)`
+color: ${({col}) => 
+    col === 'jetBlack' && '#29252d' ||
+    col === 'sand' && '#ecede8' ||
+    col === 'green' && '#aac5bf' ||
+    col === 'pink' && '#dd727f' ||
+    col === 'black' && '#151513' ||
+    col === 'gray' && '#c5c5c5' ||
+    '#29252d'
+};
 
+
+width: ${ props => props.widwidth};
+text-align: ${ props => props.txtalign};
+margin: ${ props => props.margin};
+`
+
+
+export default function Navigation() {
+    const router = useRouter()
     const [menu, setMenu] = useState(false)
     const [open, setOpen] = useState(false);
 
@@ -45,26 +66,20 @@ export default function Navigation() {
 
 
     const style = {
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        transform: 'translate(-50%, -50%)',
-        width: '80%',
-        bgcolor: 'background.paper',
-        borderRadius: '10px',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: '5%',
-        boxShadow: 24,
-        pt: 1.5,
-        px: 1.5,
-        pb: 1.5,
-    };
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '100%',
+    display:'flex',
+    flexDirection:"column",
+    justifyContent:'center',
+    alignItems:'center',
+  };
 
     return (
         <Wrapper className={scrolled ? `${styles.navscroll}` : ""}>
-            <Image src="/logo.svg" alt="JamJam Logo" width={65} height={65} />
+            <Image onClick={()=>router.push("/home")} src="/logo.svg" alt="JamJam Logo" width={65} height={65}/>
 
             <GridViewRoundedIcon onClick={toggleMenu} color="primary" sx={{ fontSize: 40 }} />
 
@@ -74,7 +89,9 @@ export default function Navigation() {
                 onBackdropClick={() => setMenu(!menu)}
             >
                 <Box sx={style}>
-                    <div style={{ position: 'absolute' }}>hi</div>
+                 <AppText c="sand" variant="header"/>
+                 <AppText/>
+
                 </Box>
             </Modal>
 

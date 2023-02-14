@@ -6,10 +6,12 @@ import styles from "../../styles/Home.module.css";
 const Wrapper = styled.div`
 width:100vw;
 overflow-x: scroll;
+padding: 1em;
 `
 
 const Row = styled.div`
 display:flex;
+justify-content:center;
 flex-direction: row;
 gap:2%;
 `
