@@ -21,19 +21,19 @@ align-items:center;
 position:sticky;
 top:0%;
 z-index:10;
-backdrop-filter:blur(1px);    
+backdrop-filter:blur(1px);   
+ 
 filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
 `
 
-
 const Text = styled(Typography)`
 color:var(--sand-color);
-text-align: center;
-margin: 0;
+text-align: left;
 cursor: pointer;
+width:0%;
 &:hover{
     transition: 0.5s ease;
-    color:var(--jetblack-color);
+    color:var(--pink-color);
 }
 `
 
@@ -67,8 +67,8 @@ export default function Navigation() {
     width: '100%',
     display:'flex',
     flexDirection:"column",
-    justifyContent:'center',
-    alignItems:'center',
+    padding: '2em 1em',
+    margin: '0 1em',
   };
 
   const logout = () => {
@@ -83,14 +83,18 @@ export default function Navigation() {
             <GridViewRoundedIcon onClick={toggleMenu} color="primary" sx={{ fontSize: 40 }} />
 
             <Modal
+                sx={{backgroundColor: "rgba(0, 0, 0, 0.6)",}}
                 backdrop
                 open={menu}
                 onBackdropClick={() => setMenu(!menu)}
+                
             >
-                <Box sx={style}> 
+                <Box
+                onClick={() => setMenu(!menu)}
+                 sx={style}> 
                 <Text onClick={()=>router.push("/home")} variant={"navText"}>HOME</Text>
                 <Text onClick={()=>router.push("/music")} variant={"navText"}>MUSIC</Text>
-                <Text onClick={()=>router.push("/about")} variant={"navText"}>ABOUT US</Text>
+                <Text onClick={()=>router.push("/about")} variant={"navText"}>ABOUT</Text>
                 <Text onClick={logout} variant={"button"}>LOGOUT</Text>
                 </Box>
             </Modal>

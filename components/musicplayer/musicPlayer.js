@@ -34,7 +34,7 @@ export default function MusicPlayer({
               allowtransparency="true"
               allow="encrypted-media"
              
-             
+
     ></IEmbed>
      </Wrapper>
     )
