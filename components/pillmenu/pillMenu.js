@@ -13,7 +13,8 @@ border-radius:20px;
 text-align:center;
 border: 1px solid #29252D;
 width:100%;
-padding: 0.5em 1.25em;
+padding: .5em 1.25em;
+margin: 0.5em 0;
 white-space: nowrap;
 color:var(--jetblack-color);
 &:hover{
