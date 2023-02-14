@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import styled from "styled-components";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import OpenWeather from "../components/openweather/openWeather";
@@ -8,7 +9,15 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import PillMenuCard from "../components/pillmenu/pillMenuCard";
 import { Wrapper } from "./home";
-import Navigation from '../components/navigation/navigation'
+import Navigation from "../components/navigation/navigation";
+import MusicPlayer from "../components/musicplayer/musicPlayer";
+import { padding } from "@mui/system";
+
+export const ButtonWrapper = styled.div`
+display: flex;
+align-items: center;
+padding: 2em 5em;
+`
 
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -89,7 +98,7 @@ export default function Music() {
   //       },
   //     })
   //     .then(() => {
-       
+
   //     })
   //     .catch((error) => {
   //       if (error.response) {
@@ -103,7 +112,8 @@ export default function Music() {
 
   const randomSong = async (e) => {
     e.preventDefault();
-      axios.get("https://api.spotify.com/v1/search", {
+    axios
+      .get("https://api.spotify.com/v1/search", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -123,7 +133,6 @@ export default function Music() {
           console.log("this is the error message", error.response.data);
         }
       });
-    
   };
 
   return (
@@ -135,30 +144,17 @@ export default function Music() {
       </Head>
       <Navigation></Navigation>
       <Wrapper>
-
         <PillMenuCard />
-        
-        {song && (
-          <div>
-            <audio id="audio" src={song.preview_url}></audio>
-            <iframe
-              src={`https://open.spotify.com/embed/track/${song.id}`}
-              width="400"
-              height="500"
-              frameBorder="0"
-              allowtransparency="true"
-              allow="encrypted-media"
-            ></iframe>
-          </div>
-        )}
-        
-        
-        <Button onClick={randomSong} variant="contained">
-          DISLIKE
-        </Button>
-        <Button onClick={randomSong} variant="contained">
-          LIKE
-        </Button>
+
+        {song && <MusicPlayer song={song.id} />}
+        <ButtonWrapper>
+          <Button onClick={randomSong} variant="contained">
+            DISLIKE
+          </Button>
+          <Button sx={{margin:2}} onClick={randomSong} variant="contained">
+            LIKE
+          </Button>
+        </ButtonWrapper>
 
         <OpenWeather />
       </Wrapper>
