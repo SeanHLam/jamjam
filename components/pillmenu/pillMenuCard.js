@@ -4,7 +4,18 @@ import styled from 'styled-components';
 import styles from "../../styles/Home.module.css";
 
 const Wrapper = styled.div`
-width:100vw;
+
+
+@media (min-width: 0px) {
+    width:100vw;
+  }
+
+@media (min-width: 820px) {
+    width:75vw;
+  }
+@media (min-width: 1000px) {
+    width:55%;
+  }
 overflow-x: scroll;
 padding: 1em;
 `
@@ -13,6 +24,7 @@ const Row = styled.div`
 display:flex;
 justify-content:center;
 flex-direction: row;
+flex-wrap: wrap;
 gap:2%;
 `
 export default function PillMenuCard(
