@@ -60,7 +60,6 @@ const logout = () => {
 
       <Navigation/>
       <Wrapper>
-        <Button onClick={logout}>Logout</Button>
         <CreatorCard></CreatorCard>
       
 
