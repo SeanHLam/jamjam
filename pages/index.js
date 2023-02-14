@@ -52,6 +52,9 @@ export default function Login() {
       }
     }
   }
+    const logout = () => {
+      window.localStorage.removeItem("token")
+  }
 
   return (
     <div>
@@ -78,7 +81,7 @@ export default function Login() {
                 onHoverEnd={e => {}}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                <Button href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} size='small' variant="contained">Login To Spotify</Button>
+                <Button onClick={logout} href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} size='small' variant="contained">Login To Spotify</Button>
               </motion.div>
             </motion.div>
 
