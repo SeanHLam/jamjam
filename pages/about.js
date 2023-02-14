@@ -18,7 +18,6 @@ export default function About() {
     return (
         <div>
             <Navigation></Navigation>
-            <AppText text="ABOUT US"></AppText>
             <Wrapper>
                 <AboutCard></AboutCard>
             </Wrapper>
