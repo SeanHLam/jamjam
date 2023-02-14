@@ -8,6 +8,7 @@ import Button from "@mui/material/Button";
 import OpenWeather from '../components/openweather/openWeather'
 import {useEffect, useState} from 'react';
 import Navigation from '../components/navigation/navigation'
+import CreatorCard from "../components/creatorpick/creatorPick";
 
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
 const REDIRECT_URI = "http://localhost:3000/home";
@@ -61,6 +62,7 @@ const logout = () => {
       <Wrapper>
         <Button onClick={logout}>Logout</Button>
         <Button href={"/music"}>Music</Button>
+        <CreatorCard></CreatorCard>
       
 
       </Wrapper>

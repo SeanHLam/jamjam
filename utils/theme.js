@@ -72,6 +72,7 @@ components:{
           fontSize: 19,
           padding: "0.5em 1.25em",
           borderRadius: '10px',
+          backgroundColor:"#DD727F"
         }
       },
       {

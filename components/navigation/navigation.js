@@ -1,5 +1,5 @@
 import { Link, Typography } from "@mui/material";
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import styles from "../../styles/Home.module.css";
@@ -54,12 +54,12 @@ export default function Navigation() {
     const [scrolled, setScrolled] = useState(false);
 
     useEffect(() => {
-        window.onscroll = function() {
-        if (window.scrollY > 35) {
-            setScrolled(true);
-        } else if (window.scrollY < 35) {
-            setScrolled(false);
-        }
+        window.onscroll = function () {
+            if (window.scrollY > 35) {
+                setScrolled(true);
+            } else if (window.scrollY < 35) {
+                setScrolled(false);
+            }
         };
     }, []);
 
@@ -81,16 +81,17 @@ export default function Navigation() {
         <Wrapper className={scrolled ? `${styles.navscroll}` : ""}>
             <Image onClick={()=>router.push("/home")} src="/logo.svg" alt="JamJam Logo" width={65} height={65}/>
 
-            <GridViewRoundedIcon onClick={toggleMenu} color="primary" sx={{fontSize:40}}/>
+            <GridViewRoundedIcon onClick={toggleMenu} color="primary" sx={{ fontSize: 40 }} />
 
             <Modal
-            backdrop
-            open={menu}
-            onBackdropClick={() => setMenu(!menu)}
+                backdrop
+                open={menu}
+                onBackdropClick={() => setMenu(!menu)}
             >
                 <Box sx={style}>
                  <AppText c="sand" variant="header"/>
                  <AppText/>
+
                 </Box>
             </Modal>
 
