@@ -10,6 +10,7 @@ import Popover from '@mui/material/Popover';
 import { useRouter } from 'next/router'
 import AppText from "../apptext/apptext";
 
+
 const Wrapper = styled.div`
 width:100vw;
 background-color: transparent;
@@ -21,24 +22,19 @@ position:sticky;
 top:0%;
 z-index:10;
 backdrop-filter:blur(1px);    
-/* filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06)); */
+filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
 `
 
+
 const Text = styled(Typography)`
-color: ${({col}) => 
-    col === 'jetBlack' && '#29252d' ||
-    col === 'sand' && '#ecede8' ||
-    col === 'green' && '#aac5bf' ||
-    col === 'pink' && '#dd727f' ||
-    col === 'black' && '#151513' ||
-    col === 'gray' && '#c5c5c5' ||
-    '#29252d'
-};
-
-
-width: ${ props => props.widwidth};
-text-align: ${ props => props.txtalign};
-margin: ${ props => props.margin};
+color:var(--sand-color);
+text-align: center;
+margin: 0;
+cursor: pointer;
+&:hover{
+    transition: 0.5s ease;
+    color:var(--jetblack-color);
+}
 `
 
 
@@ -63,8 +59,6 @@ export default function Navigation() {
         };
     }, []);
 
-
-
     const style = {
     position: 'absolute',
     top: '50%',
@@ -88,10 +82,10 @@ export default function Navigation() {
                 open={menu}
                 onBackdropClick={() => setMenu(!menu)}
             >
-                <Box sx={style}>
-                 <AppText c="sand" variant="header"/>
-                 <AppText/>
-
+                <Box sx={style}> 
+                <Text onClick={()=>router.push("/home")} variant={"navText"}>HOME</Text>
+                <Text onClick={()=>router.push("/music")} variant={"navText"}>MUSIC</Text>
+                <Text onClick={()=>router.push("/about")} variant={"navText"}>ABOUT US</Text>
                 </Box>
             </Modal>
 
