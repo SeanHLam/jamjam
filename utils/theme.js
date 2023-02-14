@@ -49,6 +49,10 @@ export const theme = createTheme({
     fontSize: '16px',
     fontFamily: "Righteous",
   },
+  navText: {
+    fontSize: '7em',
+    fontFamily: "Righteous",
+  },
 },
 
 components:{

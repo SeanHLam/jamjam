@@ -28,7 +28,7 @@ export default function AppText({
     onText=()=>{},
 }){
     return (
-        <Text variant={variant} txtalign={align} margin={margin} col={c} widwidth={wdth} onClick={onText}>
+        <Text  variant={variant} txtalign={align} margin={margin} col={c} widwidth={wdth} onClick={onText}>
             {text}
         </Text>
     )
