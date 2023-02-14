@@ -71,6 +71,11 @@ export default function Navigation() {
     alignItems:'center',
   };
 
+  const logout = () => {
+    window.localStorage.removeItem("token")
+    router.push("/")
+}
+
     return (
         <Wrapper className={scrolled ? `${styles.navscroll}` : ""}>
             <Image onClick={()=>router.push("/home")} src="/logo.svg" alt="JamJam Logo" width={65} height={65}/>
@@ -86,6 +91,7 @@ export default function Navigation() {
                 <Text onClick={()=>router.push("/home")} variant={"navText"}>HOME</Text>
                 <Text onClick={()=>router.push("/music")} variant={"navText"}>MUSIC</Text>
                 <Text onClick={()=>router.push("/about")} variant={"navText"}>ABOUT US</Text>
+                <Text onClick={logout} variant={"button"}>LOGOUT</Text>
                 </Box>
             </Modal>
 
