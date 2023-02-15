@@ -108,6 +108,12 @@
   margin-left: 0.5rem;
 }
 
+.astronaut{
+  width:30rem;
+  height:30rem;
+  transform: scaleX(-1);
+}
+
 @media (prefers-color-scheme: dark) {
 
   .card,
@@ -125,11 +131,11 @@
 }
 
 .animation {
-  height: 150px;
-  width: 150px;
+  height: 10rem;
+  width: 10rem;
   position: absolute;
-  top: -18%;
-  right: 5%;
+  top:-1rem;
+  right: 1rem;
   z-index: 5;
 }
 
@@ -160,6 +166,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.weatherContainer{
+  width: 50rem;
 }
 
 
@@ -194,6 +204,18 @@
 
   .pickPlay {
     align-items: center;
+  }
+
+  .animation {
+    height: 10rem;
+    width: 10rem;
+    position: absolute;
+    top: -1rem;
+    z-index: 5;
+  }
+
+  .weatherContainer{
+    width: 30rem;
   }
 
 }

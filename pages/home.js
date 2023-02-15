@@ -9,6 +9,8 @@ import OpenWeather from '../components/openweather/openWeather'
 import {useEffect, useState} from 'react';
 import Navigation from '../components/navigation/navigation'
 import CreatorCard from "../components/creatorpick/creatorPick";
+import { Player } from "@lottiefiles/react-lottie-player";
+import AppText from "../components/apptext/apptext";
 
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
 const REDIRECT_URI = "http://localhost:3000/home";
@@ -20,10 +22,21 @@ export const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-
 width:100vw;
 padding: 2em 5em;
 min-height:110vh;
+`
+
+const Row = styled.div`
+display:flex;
+flex-direction:row;
+`
+
+const LandingText = styled.div`
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:flex-start;
 `
 
 export default function Home() {
@@ -60,7 +73,22 @@ const logout = () => {
 
       <Navigation/>
       <Wrapper>
-        <CreatorCard></CreatorCard>
+
+      <Row>
+        <LandingText>
+          <AppText variant='header' c='jetBlack' text='Discover a World of Music'/>
+          <AppText variant='bodyLarge' c='gray' text='Music you never knew you needed!'/>
+          <Button variant="contained" size="small"> Find your sound </Button>
+        </LandingText>
+        <Player 
+          autoplay
+          loop
+          src='animations/astronaut.json'
+          className={styles.astronaut}
+        />
+      </Row>
+
+      {/* <CreatorCard></CreatorCard> */}
       
 
       </Wrapper>

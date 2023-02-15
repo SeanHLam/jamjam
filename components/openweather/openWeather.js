@@ -20,7 +20,6 @@ margin: 3em 0em;
 `
 
 const Container = styled.div`
-width:100%;
 padding:5%;
 height:100%;
 background-color: #DD727F;
@@ -146,7 +145,7 @@ export default function OpenWeather() {
         })
       }
 
-      <Container>
+      <Container className={styles.weatherContainer}>
 
         <OvalOverlay />
 

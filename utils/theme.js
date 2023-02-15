@@ -18,11 +18,11 @@ export const theme = createTheme({
  },
  typography: {
   header: {
-    fontSize: '28px',
+    fontSize: '2.8rem',
     fontFamily: "Righteous",
   },
   headerSmall: {
-    fontSize: '18px',
+    fontSize: '1.285rem',
     fontFamily: "Righteous",
   },
   bodyLarge: {
@@ -30,31 +30,31 @@ export const theme = createTheme({
     fontFamily: "Sarabun",
   },
   bodyMedium: {
-    fontSize: '16px',
+    fontSize: '1.6rem',
     fontFamily: "Sarabun",
   },
   bodySmall: {
-    fontSize: '14px',
+    fontSize: '1.4rem',
     fontFamily: "Sarabun",
   },
   pill: {
-    fontSize: '14px',
+    fontSize: '1.4rem',
     fontFamily: "Righteous",
   },
   button: {
-    fontSize: '24px',
+    fontSize: '2.4rem',
     fontFamily: "Righteous",
   },
   buttonSmall: {
-    fontSize: '16px',
+    fontSize: '1.6rem',
     fontFamily: "Righteous",
   },
   navText: {
-    fontSize: '8em',
+    fontSize: '12em',
     fontFamily: "Righteous",
   },
   navText: {
-    fontSize: '8em',
+    fontSize: '12rem',
     fontFamily: "Righteous",
   },
 },

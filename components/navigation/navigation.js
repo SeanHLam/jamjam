@@ -9,12 +9,13 @@ import Box from '@mui/material/Box';
 import Popover from '@mui/material/Popover';
 import { useRouter } from 'next/router'
 import AppText from "../apptext/apptext";
+import { motion } from "framer-motion";
 
 
 const Wrapper = styled.div`
 width:100vw;
 background-color: transparent;
-padding:0.3em 2.5em;
+padding:1em 5em;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -22,7 +23,6 @@ position:sticky;
 top:0%;
 z-index:10;
 backdrop-filter:blur(1px);   
- 
 filter: drop-shadow(0 1px 2px rgb(0 0 0 / 0.1)) drop-shadow(0 1px 1px rgb(0 0 0 / 0.06));
 `
 
@@ -69,12 +69,39 @@ export default function Navigation() {
     flexDirection:"column",
     padding: '2em 1em',
     margin: '0 1em',
-  };
+    outline: 'none'
+    };
 
-  const logout = () => {
+    const container = {
+        hidden: { opacity: 1, scale: 0 },
+        visible: {
+          opacity: 1,
+          scale: 1,
+          transition: {
+            delayChildren: 0.3,
+            staggerChildren: 0.2,
+          }
+        }
+      };
+
+    const menus = {
+        hidden: { y: 300, opacity: 0 },
+        visible: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.5,
+            ease: "linear",
+            type: "spring",
+            stiffness: 100, damping: 30
+        }
+        }
+    };
+
+    const logout = () => {
     window.localStorage.removeItem("token")
     router.push("/")
-}
+    }
 
     return (
         <Wrapper className={scrolled ? `${styles.navscroll}` : ""}>
@@ -86,17 +113,33 @@ export default function Navigation() {
                 sx={{backgroundColor: "rgba(0, 0, 0, 0.6)",}}
                 backdrop
                 open={menu}
-                onBackdropClick={() => setMenu(!menu)}
-                
+                onBackdropClick={() => setMenu(!menu)}   
             >
+                
                 <Box
                 onClick={() => setMenu(!menu)}
                  sx={style}> 
-                <Text onClick={()=>router.push("/home")} variant={"navText"}>HOME</Text>
-                <Text onClick={()=>router.push("/music")} variant={"navText"}>MUSIC</Text>
-                <Text onClick={()=>router.push("/about")} variant={"navText"}>ABOUT</Text>
-                <Text onClick={logout} variant={"button"}>LOGOUT</Text>
+                <motion.ul
+                    variants={container}
+                    initial="hidden"
+                    animate="visible"
+                    style={{listStyle:"none"}}
+                    >
+                    <motion.li variants={menus}>
+                        <Text onClick={()=>router.push("/home")} variant={"navText"}>HOME</Text>
+                    </motion.li>
+                    <motion.li variants={menus}>
+                        <Text onClick={()=>router.push("/music")} variant={"navText"}>MUSIC</Text>
+                    </motion.li>
+                    <motion.li variants={menus}>
+                        <Text onClick={()=>router.push("/about")} variant={"navText"}>ABOUT</Text>
+                    </motion.li>
+                    <motion.li variants={menus}>
+                        <Text onClick={logout} variant={"button"}>LOGOUT</Text>
+                    </motion.li>
+                </motion.ul>
                 </Box>
+
             </Modal>
 
         </Wrapper>

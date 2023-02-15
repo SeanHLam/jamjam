@@ -8,7 +8,8 @@ color: ${({col}) =>
     col === 'green' && '#aac5bf' ||
     col === 'pink' && '#dd727f' ||
     col === 'black' && '#151513' ||
-    col === 'gray' && '#c5c5c5' ||
+    col === 'gray' && '#A9A9A9' ||
+    col === 'white' && '#FFFFFF' ||
     '#29252d'
 };
 
