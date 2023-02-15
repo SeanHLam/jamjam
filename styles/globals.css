@@ -10,7 +10,10 @@ a {
   text-decoration: none;
 }
 
+
 * {
   box-sizing: border-box;
+  cursor: url("https://i.stack.imgur.com/inwsy.png") 16 16, none !important;  
 }
+
 
