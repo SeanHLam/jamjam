@@ -84,31 +84,7 @@ export default function Music() {
     return randomSearch;
   }
 
-  // const randomSong = async (e) => {
-  //   e.preventDefault();
-  //   const { data } = await axios
-  //     .get("https://api.spotify.com/v1/search", {
-  //       headers: {
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //       params: {
-  //         type: "track",
-  //         q: getRandomSearch(),
-  //         offset: randomOffset,
-  //       },
-  //     })
-  //     .then(() => {
-
-  //     })
-  //     .catch((error) => {
-  //       if (error.response) {
-  //         console.log(error.response.data);
-  //       }
-  //     });
-  //   if (data) {
-  //     setSong(data.tracks.items[15]);
-  //   }
-  // };
+  
 
   const randomSong = async (e) => {
     e.preventDefault();
@@ -134,7 +110,7 @@ export default function Music() {
         }
       });
   };
-
+console.log(token)
   return (
     <>
       <Head>
