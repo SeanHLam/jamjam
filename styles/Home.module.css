@@ -109,9 +109,10 @@
 }
 
 .astronaut{
-  width:30rem;
-  height:30rem;
   transform: scaleX(-1);
+  width: 30rem;
+  right:0%;
+  position:absolute;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -131,35 +132,31 @@
 }
 
 .animation {
-  height: 10rem;
-  width: 10rem;
+  height: 12rem;
+  width: 12rem;
   position: absolute;
-  top:-1rem;
+  top:-3rem;
   right: 1rem;
   z-index: 5;
 }
 
 .pickCard {
   display: flex;
-  flex-direction: row;
-  padding: 1rem;
+  flex-direction: column;
 }
 
 .pickPlay {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
 }
 
 .pickText {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
 }
 
 .pickImage {
-  margin-bottom: 1rem;
-  object-fit: cover;
+  object-fit:contain;
 }
 
 .columncenter {
@@ -199,7 +196,6 @@
   .pickCard {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
   }
 
   .pickPlay {
@@ -210,7 +206,7 @@
     height: 10rem;
     width: 10rem;
     position: absolute;
-    top: -1rem;
+    top: -5rem;
     z-index: 5;
   }
 

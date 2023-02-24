@@ -12,8 +12,7 @@ import TextField from '@mui/material/TextField';
 
 
 const Wrapper = styled.div`
-height:15em;
-width:30em;
+height:100%;
 max-width: 90vw;
 position:relative;
 margin: 3em 0em;
@@ -21,7 +20,8 @@ margin: 3em 0em;
 
 const Container = styled.div`
 padding:5%;
-height:100%;
+height:20rem;
+width:30rem;
 background-color: #DD727F;
 position:relative;
 border-radius:10px;
@@ -29,14 +29,14 @@ overflow:hidden;
 `
 
 const OvalOverlay = styled.div`
-width: 18rem;
-height: 15rem;
-border-radius: 50%;
+width: 100%;
+height: 50%;
+border-radius: 100%;
 background-color:#F3F3F0;
 transform: scaleX(2.1);
 position:absolute;
 margin:auto;
-top:45%;
+top:60%;
 right:0;
 left:0;
 `
@@ -44,8 +44,17 @@ left:0;
 const Row = styled.div`
 display:flex;
 flex-direction:row;
-max-width:100%;
-width:70%;
+justify-content:flex-start;
+align-items:flex-start;
+gap:3%;
+`
+
+const TextRow = styled.div`
+display:flex;
+flex-direction:row;
+justify-content:flex-start;
+align-items:center;
+gap:3%;
 `
 
 const Column = styled.div`
@@ -66,7 +75,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '80%',
+  width: '20rem',
   bgcolor: 'background.paper',
   borderRadius: '10px',
   display: 'flex',
@@ -150,22 +159,29 @@ export default function OpenWeather() {
         <OvalOverlay />
 
         <Column>
-          <Row style={{ alignItems: 'center', gap: '3%' }}>
-            <SearchIcon onClick={handleOpen} color='sand' style={{ transform: 'rotateY(-180deg)' }}></SearchIcon>
-            <AppText text={city} variant='headerSmall' wdth='100%' c='sand'></AppText>
-            <AppText text={country} variant='bodySmall' c='gray'></AppText>
-
-          </Row>
+          <Row>
+            <SearchIcon onClick={handleOpen} fontSize='medium' color='sand' style={{ transform: 'rotateY(-180deg)', marginTop:'0.25rem'}}></SearchIcon>
+            {!weather ? 
+            <TextRow>
+                <AppText text={city} variant='headerSmall' w='100%' c='sand'></AppText>
+                <AppText text={country} variant='bodySmall' c='gray'></AppText>
+                </TextRow>
+                : ''} 
           {
             weather && weather.map((w, index) => {
               return (
                 <Column className={styles.weatherInfo}>
+                <TextRow>
+                <AppText text={city} variant='headerSmall' w='100%' c='sand'></AppText>
+                <AppText text={country} variant='bodySmall' c='gray'></AppText>
+                </TextRow>
                   <AppText text={`${data.main.temp} °`} variant='header' c='sand'>°C</AppText>
                   <AppText text={w.main} variant='bodySmall' c='gray'></AppText>
                 </Column>
               )
             })
           }
+          </Row>
 
           {trigger ?
             <Column>

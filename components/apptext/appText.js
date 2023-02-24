@@ -3,33 +3,34 @@ import { Typography } from "@mui/material";
 
 const Text = styled(Typography)`
 color: ${({col}) => 
-    col === 'jetBlack' && '#29252d' ||
-    col === 'sand' && '#ecede8' ||
+    col === 'black' && '#29252d' ||
+    col === 'sand' && '#f3f3f0' ||
     col === 'green' && '#aac5bf' ||
     col === 'pink' && '#dd727f' ||
-    col === 'black' && '#151513' ||
     col === 'gray' && '#A9A9A9' ||
     col === 'white' && '#FFFFFF' ||
     '#29252d'
-};
-
+    };
 
 width: ${ props => props.widwidth};
 text-align: ${ props => props.txtalign};
-margin: ${ props => props.margin};
+padding: ${ props => props.padding};
+margin ${ props => props.margin};
+white-space: pre-line;
 `
 
 export default function AppText({
     text="Sample Text",
-    c="jetBlack",
-    wdth="100%",
+    c="black",
+    wdth="0",
     align="left",
-    margin='0',
     variant='header',
+    margin='0',
+    padding='0',
     onText=()=>{},
 }){
     return (
-        <Text  variant={variant} txtalign={align} margin={margin} col={c} widwidth={wdth} onClick={onText}>
+        <Text variant={variant} padding={padding} txtalign={align} margin={margin} col={c} widwidth={wdth} onClick={onText}>
             {text}
         </Text>
     )

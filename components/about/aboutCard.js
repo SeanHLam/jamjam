@@ -24,9 +24,9 @@ export default function AboutCard() {
             </div>
 
             <div className={styles.pickText}>
-                <AppText c='jetBlack' text='ABOUT US'></AppText>
-                <AppText variant='bodyLarge' c='jetBlack' text=''></AppText>
-                <AppText variant='bodySmall' c='jetBlack' text='We are wholesome'></AppText>
+                <AppText c='black' text='ABOUT US'></AppText>
+                <AppText variant='bodyLarge' c='black' text=''></AppText>
+                <AppText variant='bodySmall' c='black' text='We are wholesome'></AppText>
             </div>
 
         </Card >
