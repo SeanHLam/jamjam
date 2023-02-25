@@ -61,12 +61,17 @@ export let theme = createTheme({
     fontFamily: "Sarabun",
   },
   bodySmall: {
-    fontSize: '1.2rem',
+    fontSize: '1.1rem',
     fontFamily: "Sarabun",
   },
   bodyExtraSmall: {
     fontSize: '1.1rem',
     fontFamily: "Sarabun",
+  },
+  bodyBold: {
+    fontSize: '1.4rem',
+    fontFamily: "Sarabun",
+    fontWeight:'600'
   },
   pill: {
     fontSize: '1rem', 
@@ -156,6 +161,14 @@ theme = createTheme(theme, {
       },
       [theme.breakpoints.between("sm", "md")]: {
         fontSize: '1.75rem',
+      },
+    },
+    bodySmall: {
+      [theme.breakpoints.between("0", "sm")]: {
+        fontSize: '0.8rem',
+      },
+      [theme.breakpoints.between("sm", "md")]: {
+        fontSize: '1rem',
       },
     },
     landing: {

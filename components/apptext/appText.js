@@ -7,7 +7,7 @@ color: ${({col}) =>
     col === 'sand' && '#f3f3f0' ||
     col === 'green' && '#aac5bf' ||
     col === 'pink' && '#dd727f' ||
-    col === 'gray' && '#A9A9A9' ||
+    col === 'gray' && '#C2C2C2' ||
     col === 'white' && '#FFFFFF' ||
     '#29252d'
     };

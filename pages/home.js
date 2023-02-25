@@ -13,6 +13,7 @@ import { Player } from "@lottiefiles/react-lottie-player";
 import AppText from "../components/apptext/apptext";
 import LandingCard from "../components/landingcard/landingCard";
 import AppButton from "../components/button/button";
+import Footer from "../components/footer/footer";
 
 const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
 const REDIRECT_URI = "http://localhost:3000/home";
@@ -23,10 +24,8 @@ const RESPONSE_TYPE = "token";
 export const Wrapper = styled.div`
 display: flex;
 flex-direction: column;
-align-items: flex-start;
+align-items: center;
 width:100vw;
-padding: 2em 5em;
-min-height:110vh;
 `
 
 const Photo = styled(Image)`
@@ -37,7 +36,21 @@ object-fit:contain;
 const Row = styled.div`
 display:flex;
 flex-direction:row;
-padding: 0rem 5rem;
+padding: 2em 5em;
+align-items:center;
+justify-content:space-around;
+width:100%;
+margin-bottom:5rem;
+`
+
+const LandingContainer = styled.div`
+display:flex;
+flex-direction:row;
+align-items:flex-start;
+margin:3rem 0 5rem 0;
+width:100%;
+justify-content:space-around;
+padding: 2em 5em;
 `
 
 const Column = styled.div`
@@ -61,16 +74,26 @@ left:0px;
 
 const Block = styled.div`
 background-color: ${props => props.background};
-border-radius: 30px;
+border-radius: 2rem;
 width:12rem;
 height: ${props => props.height};
 margin: ${props => props.margin};
 box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px;
+
+@media (max-width: 600px) {
+  width: 8rem;
+  height: ${props => props.mobileheight};
+  border-radius:1.5rem;
+}
+
 `
 
 const BlockCont = styled.div`
 display:flex;
-gap:1rem;
+gap:2rem;
+@media (max-width: 600px) {
+  display:none;
+}
 `
 
 const LandingBottom = styled.div`
@@ -81,8 +104,19 @@ gap:5rem;
 `
 
 const BottomSection = styled.section`
-flex-direction:row;
-padding: 0rem 5rem;
+display:flex;
+flex-direction:column;
+justify-content:space-evenly;
+align-items:center;
+width:100%;
+background-color:#EDEDE8;
+padding:6rem 0rem 0rem 0rem;
+border-radius:20% 20% 0% 0%;
+
+@media (max-width: 600px) {
+  flex-direction: column;
+}
+
 `
 
 export default function Home() {
@@ -122,7 +156,6 @@ function stylizeLastWord(text, color) {
   );
 }
 
-
   return (
     <>
       <Head>
@@ -134,17 +167,18 @@ function stylizeLastWord(text, color) {
       <Navigation/>
       <Wrapper>
 
-      <Row style={{alignItems:'flex-start', margin:'3rem 0 7rem 0', width:'100%', justifyContent:'space-around'}}>
+      <LandingContainer>
         <LandingText>
           <Column style={{width:'100%'}}>
-          <AppText variant='landing' c='black' wdth='60%' text={stylizeLastWord("EXPLORE THE WORLD OF\nENDLESS  JAMS", "pink")} align='left' style={{whiteSpace: 'pre-line'}}/>
+          <AppText variant='landing' c='black' wdth='80%' text={stylizeLastWord("EXPLORE THE\nWORLD OF\nENDLESS  JAMS", "pink")} align='left' style={{whiteSpace: 'pre-line'}}/>
           {/* <AppText variant='landing' c='black' text={'EXPLORE THE WORLD OF\nENDLESS MUSIC JAMS'} align='left' style={{ whiteSpace: 'pre-line' }}/> */}
-          <AppText variant='bodySmall' c='gray' wdth='65%' margin='1rem 0 3rem 0 ' text={"Easily find music you never knew you needed. Simply generate a unique mix of songs that you'll love. Get ready to explore new music, find hidden gems, and shape your own unique music experience."}/>
+          <AppText variant='bodySmall' c='gray' wdth='55%' margin='1rem 0 3rem 0 ' text={"Easily find music you never knew you needed. Simply generate a unique mix of songs that you'll love. Get ready to explore new music, find hidden gems, and shape your own unique music experience."}/>
           </Column>
           <AppButton onClick={()=>router.push("/music")} variant='contained' buttonSize='buttonLarge' bg='black' text='DISCOVER' textcolor='sand' textWidth='100%'/>
         </LandingText>
+        
         <BlockCont>
-          <Block background='#dd727f' height='20rem' style={{padding:'3rem 2rem'}}>
+          <Block background='#dd727f' height='20rem' mobileheight='10rem' style={{padding:'3rem 2rem'}}>
             <AppText variant='headerSmall' c='sand' align='center' wdth='100%' text="Music for Every Mood"/>
             <Player
               autoplay
@@ -153,7 +187,7 @@ function stylizeLastWord(text, color) {
               speed={0.5}
             />
           </Block>
-          <Block background='#aac5bf' height='27rem' style={{overflow:'none'}} >
+          <Block background='#aac5bf' height='27rem' mobileheight='13.5rem' style={{overflow:'none'}} >
               <Player 
                     autoplay
                     loop
@@ -164,9 +198,9 @@ function stylizeLastWord(text, color) {
               />
           </Block>
         </BlockCont>
-      </Row>
+      </LandingContainer>
 
-      <Row style={{alignItems:'center', justifyContent:'space-around', width:'100%', marginBottom:'5rem'}}>
+      <Row>
       <AppText text='powered by' c='gray' variant='bodySmall' wdth="100%"/>
       <LandingBottom>
         <Photo src='/spotify.png' width={85} height={50}></Photo>
@@ -176,6 +210,9 @@ function stylizeLastWord(text, color) {
 
       <BottomSection>
         <CreatorCard/>
+        <OpenWeather/>
+
+        <Footer/>
       </BottomSection>
 
       {/* <Column style={{justifyContent:'flex-start'}}>
@@ -183,6 +220,7 @@ function stylizeLastWord(text, color) {
         <CreatorCard/>
       </Column>
        */}
+
 
       </Wrapper>
     </>

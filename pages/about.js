@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import Navigation from '../components/navigation/navigation'
 import AboutCard from '../components/about/aboutCard'
 import AppText from "../components/apptext/apptext";
+import Footer from '../components/footer/footer';
 
 export const Wrapper = styled.div`
 display: flex;
@@ -21,6 +22,7 @@ export default function About() {
             <Wrapper>
                 <AboutCard></AboutCard>
             </Wrapper>
+            <Footer/>
         </div>
     )
 }
