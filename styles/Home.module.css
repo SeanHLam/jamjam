@@ -12,6 +12,7 @@
   align-items: center;
 }
 
+
 .footer {
   display: flex;
   flex: 1;
@@ -109,9 +110,10 @@
 }
 
 .astronaut{
-  width:30rem;
-  height:30rem;
   transform: scaleX(-1);
+  width: 30rem;
+  right:0%;
+  position:absolute;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -131,47 +133,41 @@
 }
 
 .animation {
-  height: 10rem;
-  width: 10rem;
-  position: absolute;
-  top:-1rem;
-  right: 1rem;
-  z-index: 5;
+position:absolute;
+width:15rem;
+height:15rem;
+right:0rem;
+top:-4rem;
+z-index:5;
 }
 
 .pickCard {
   display: flex;
-  flex-direction: row;
-  padding: 1rem;
+  flex-direction: column;
 }
 
 .pickPlay {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
 }
 
 .pickText {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
 }
 
 .pickImage {
-  margin-bottom: 1rem;
-  object-fit: cover;
+  object-fit:contain;
+  border-radius:1.5rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 8px 0px 3px;
 }
+
 
 .columncenter {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
-.weatherContainer{
-  width: 50rem;
-}
-
 
 /* Mobile */
 
@@ -199,23 +195,12 @@
   .pickCard {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
   }
 
   .pickPlay {
     align-items: center;
   }
 
-  .animation {
-    height: 10rem;
-    width: 10rem;
-    position: absolute;
-    top: -1rem;
-    z-index: 5;
-  }
 
-  .weatherContainer{
-    width: 30rem;
-  }
 
 }

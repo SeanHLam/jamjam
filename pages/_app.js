@@ -1,9 +1,10 @@
 import "../styles/globals.css";
 import "../styles/variables.css";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../utils/theme";
 import createEmotionCache from "../utils/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
+import { styles } from "../utils/theme";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -13,11 +14,12 @@ function MyApp({
  pageProps,
 }) {
  return (
+  <ThemeProvider theme={theme}>
    <CacheProvider value={emotionCache}>
-     <ThemeProvider theme={theme}>
        <Component {...pageProps} />
-     </ThemeProvider>
+
    </CacheProvider>
+   </ThemeProvider>
  );
 }
 

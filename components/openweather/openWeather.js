@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import styles from "../../styles/Home.module.css";
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
 import AppText from '../apptext/apptext';
@@ -9,19 +9,18 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
-
+import PlaylistCard from './playlistCard';
 
 const Wrapper = styled.div`
-height:15em;
-width:30em;
-max-width: 90vw;
+height:100%;
+max-width:90vw;
 position:relative;
-margin: 3em 0em;
 `
 
 const Container = styled.div`
 padding:5%;
-height:100%;
+height:22rem;
+width:35rem;
 background-color: #DD727F;
 position:relative;
 border-radius:10px;
@@ -29,14 +28,14 @@ overflow:hidden;
 `
 
 const OvalOverlay = styled.div`
-width: 18rem;
-height: 15rem;
-border-radius: 50%;
-background-color:#F3F3F0;
+width:60%;
+height: 70%;
+border-radius: 100%;
+background-color:var(--sand-color);
 transform: scaleX(2.1);
 position:absolute;
 margin:auto;
-top:45%;
+top:50%;
 right:0;
 left:0;
 `
@@ -44,14 +43,25 @@ left:0;
 const Row = styled.div`
 display:flex;
 flex-direction:row;
-max-width:100%;
-width:70%;
+justify-content:flex-start;
+align-items:flex-start;
+gap:3%;
+`
+
+const TextRow = styled.div`
+display:flex;
+flex-direction:row;
+justify-content:flex-start;
+align-items:center;
+gap:3%;
 `
 
 const Column = styled.div`
 display:flex;
 flex-direction:column;
 width:100%;
+justify-content:space-between;
+height:100%;
 `
 
 const Input = styled(TextField)`
@@ -66,7 +76,7 @@ const style = {
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  width: '80%',
+  width: '20rem',
   bgcolor: 'background.paper',
   borderRadius: '10px',
   display: 'flex',
@@ -130,11 +140,36 @@ export default function OpenWeather() {
       setLocation('')
     }
   }
+
+  const [vancouverWeather, setVancouverWeather] = useState(null);
+  // const [vancouverData, setVancouverData] = useState({
+  //   name: 'Vancouver',
+  //   sys: { country: 'CA' },
+  //   main: { temp: 0 },
+  //   weather: [{ main: '' }]
+  // });
+
+  const [vancouverData, setVancouverData] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const vancouver = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Vancouver&units=metric&appid=${apiKey}`);
+        setVancouverData(vancouver.data);
+        setVancouverWeather(vancouver.data.weather);
+      } catch (err2) {
+        console.log(err2);
+      }
+    };
+    fetchData();
+  }, []);
+
+
   return (
     <Wrapper>
 
-      {
-        weather && weather.map((w, index) => {
+      {weather ? 
+      weather.map((w, index) => {
           return (
             <Player
               className={styles.animation}
@@ -143,6 +178,18 @@ export default function OpenWeather() {
               src={`/animations/${w.main.toLowerCase()}.json`} />
           )
         })
+        : vancouverWeather && 
+          vancouverWeather.map((w, index) => {
+            return (
+              <Player
+                className={styles.animation}
+                autoplay
+                loop
+                src={`/animations/${w.main.toLowerCase()}.json`} />
+            )
+          })
+          
+
       }
 
       <Container className={styles.weatherContainer}>
@@ -150,22 +197,52 @@ export default function OpenWeather() {
         <OvalOverlay />
 
         <Column>
-          <Row style={{ alignItems: 'center', gap: '3%' }}>
-            <SearchIcon onClick={handleOpen} color='sand' style={{ transform: 'rotateY(-180deg)' }}></SearchIcon>
-            <AppText text={city} variant='headerSmall' wdth='100%' c='sand'></AppText>
-            <AppText text={country} variant='bodySmall' c='gray'></AppText>
+          <Row>
+            <SearchIcon onClick={handleOpen} fontSize='medium' color='sand' style={{ transform: 'rotateY(-180deg)', marginTop:'0.25rem'}}></SearchIcon>
 
-          </Row>
-          {
+          {/* {
             weather && weather.map((w, index) => {
               return (
                 <Column className={styles.weatherInfo}>
+                <TextRow>
+                <AppText text={city} variant='headerSmall' w='100%' c='sand'></AppText>
+                <AppText text={country} variant='bodySmall' c='gray'></AppText>
+                </TextRow>
                   <AppText text={`${data.main.temp} °`} variant='header' c='sand'>°C</AppText>
                   <AppText text={w.main} variant='bodySmall' c='gray'></AppText>
                 </Column>
               )
             })
           }
+           */}
+
+        {weather ? (
+          weather.map((w, index) => (
+            <Column className={styles.weatherInfo}>
+              <TextRow>
+                <AppText text={city} variant='headerSmall' wdth='auto' c='sand'></AppText>
+                <AppText text={country} variant='bodySmall' c='gray'></AppText>
+              </TextRow>
+              <AppText text={`${data.main.temp} °C`} variant='header' wdth='auto' c='sand' margin='1rem 0 0 0'></AppText>
+              <AppText text={w.main} variant='bodySmall' c='gray'></AppText>
+            </Column>
+          ))
+        ) : 
+        vancouverData && 
+        (
+          <Column className={styles.weatherInfo}>
+            <TextRow>
+              <AppText text={vancouverData.name.toUpperCase()} variant='headerSmall' wdth='auto' c='sand'></AppText>
+              <AppText text={vancouverData.sys.country} variant='bodySmall' c='gray'></AppText>
+            </TextRow>
+            <AppText text={`${vancouverData.main.temp} °C`} variant='header' wdth='auto'c='sand' margin='1rem 0 0 0'></AppText>
+            <AppText text={vancouverData.weather[0].main} variant='bodySmall' c='gray'></AppText>
+          </Column>
+        )}
+      
+          </Row>
+
+          <PlaylistCard/>
 
           {trigger ?
             <Column>
@@ -177,7 +254,7 @@ export default function OpenWeather() {
               ></Player>
               <AppText text={errorMessage} c='gray' variant='bodySmall'></AppText>
             </Column>
-            : ""}
+            :''}
         </Column>
 
         <Modal

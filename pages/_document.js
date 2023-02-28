@@ -9,7 +9,7 @@ export default class MyDocument extends Document {
    return (
      <Html lang="en">
        <Head>
-       <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Sarabun&display=swap" rel="stylesheet"/>
+       <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Sarabun:wght@400;700;800&display=swap" rel="stylesheet"/>
          {this.props.emotionStyleTags}
        </Head>
        <body>

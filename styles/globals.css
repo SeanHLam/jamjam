@@ -3,7 +3,7 @@ body {
   background-color: #F3F3F0;
   padding: 0;
   margin: 0;
-  font-size:10px;
+  font-size:14px;
 }
 
 a {
@@ -20,6 +20,6 @@ a {
 
 @media (max-width: 600px) {
   body{
-    font-size: 8px;
+    font-size: 10px;
   }
 }

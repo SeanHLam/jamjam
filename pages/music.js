@@ -12,6 +12,7 @@ import { Wrapper } from "./home";
 import Navigation from "../components/navigation/navigation";
 import MusicPlayer from "../components/musicplayer/musicPlayer";
 import { padding } from "@mui/system";
+import Footer from "../components/footer/footer";
 
 export const ButtonWrapper = styled.div`
 display: flex;
@@ -133,6 +134,8 @@ console.log(token)
         </ButtonWrapper>
 
         <OpenWeather />
+
+        <Footer/>
       </Wrapper>
     </>
   );
