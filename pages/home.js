@@ -14,7 +14,7 @@ import AppText from "../components/apptext/apptext";
 import LandingCard from "../components/landingcard/landingCard";
 import AppButton from "../components/button/button";
 import Footer from "../components/footer/footer";
-
+import { useSession } from "next-auth/react";
 
 
 
@@ -127,10 +127,8 @@ export default function Home() {
 
 }, [])
 
-const logout = () => {
-    setToken("")
-    window.localStorage.removeItem("token")
-}
+const { data: session, status } = useSession()
+console.log(session, status)
 
 function stylizeLastWord(text, color) {
   const words = text.split(" ");
@@ -142,6 +140,7 @@ function stylizeLastWord(text, color) {
       <AppText c='pink' variant='landing' text={lastWord}></AppText>
     </>
   );
+
 }
 
   return (
