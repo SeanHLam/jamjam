@@ -12,7 +12,6 @@
   align-items: center;
 }
 
-
 .footer {
   display: flex;
   flex: 1;
@@ -113,6 +112,14 @@
   transform: scaleX(-1);
   width: 30rem;
   right:0%;
+  position:absolute;
+}
+
+.cog {
+  transform: translateX(80px);
+  width: 28rem;
+  top: 2;
+  right: 0;
   position:absolute;
 }
 

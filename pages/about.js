@@ -22,10 +22,18 @@ align-items: center;
 width: 100vw;
 min-height: 110vh;
 `
+const Spacer = styled.div`
+margin-top: 8rem;
+`
 
 const BlockCont = styled.div`
-display:flex;
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: 1fr 1fr;
 gap:2rem;
+margin-right: 2rem;
+
+
 @media (max-width: 600px) {
   display:none;
 }
@@ -58,16 +66,6 @@ opacity: 0.3;
 object-fit:contain;
 `
 
-const Row = styled.div`
-display:flex;
-flex-direction:row;
-padding: 2em 5em;
-align-items:center;
-justify-content:space-around;
-width:100%;
-margin-bottom:5rem;
-`
-
 const AnimCont = styled.div`
 width:40rem;
 position:absolute;
@@ -78,10 +76,11 @@ left:0px;
 const Block = styled.div`
 background-color: ${props => props.background};
 border-radius: 2rem;
-width:12rem;
+width:16rem;
 height: ${props => props.height};
 margin: ${props => props.margin};
 box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px;
+
 
 @media (max-width: 600px) {
   width: 8rem;
@@ -89,6 +88,7 @@ box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px;
   border-radius:1.5rem;
 }
 `
+
 
 const LandingBottom = styled.div`
 display:flex;
@@ -155,6 +155,48 @@ text-shadow: 1px 1px 1px #000, 0 -1px 1px #000, 1px 1px 1px #000, -1px 0 0 #000,
   }
 `;
 
+const ProcessCont = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+`
+
+const Row = styled.div`
+display:flex;
+flex-direction:row;
+gap: 2rem;
+align-items:center;
+justify-content:space-around;
+width:100%;
+margin-bottom:5rem;
+
+@media (max-width: 600px) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+`
+
+const ProcessBlock = styled.div`
+// background-color: #DCE7E4;
+background-color: #CEDEDB;
+border-radius: 2rem;
+width:26rem;
+height:22rem;
+height: ${props => props.height};
+margin: ${props => props.margin};
+box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px;
+
+
+@media (max-width: 600px) {
+  width: 8rem;
+  height: ${props => props.mobileheight};
+  border-radius:1.5rem;
+}
+`
+
+
 
 export default function About() {
     return (
@@ -202,16 +244,60 @@ export default function About() {
 
                         <BlockCont>
                             <Block background='#dd727f' height='20rem' mobileheight='10rem' style={{ padding: '3rem 2rem' }}>
-                                <AppText variant='headerSmall' c='sand' align='center' wdth='100%' text="Music for Every Mood" />
+                                <AppText variant='headerSmall' c='sand' align='center' wdth='100%' text="Sean" />
                             </Block>
 
-                            <Block background='#aac5bf' height='20rem' mobileheight='13.5rem' style={{ overflow: 'none' }} >
+                            <Block background='#aac5bf' height='20rem' mobileheight='10rem' style={{ padding: '3rem 2rem' }} >
+                                <AppText variant='headerSmall' c='sand' align='center' wdth='100%' text="Jason" />
                             </Block>
+
+                            <Block background='#dd727f' height='20rem' mobileheight='10rem' style={{ padding: '3rem 2rem' }}>
+                                <AppText variant='headerSmall' c='sand' align='center' wdth='100%' text="Thi" />
+                            </Block>
+
+                            <Player
+                                autoplay
+                                loop
+                                src='animations/cogs.json'
+                                speed={0.5}
+                                className={styles.cog}
+                            />
                         </BlockCont>
                     </LandingContainer>
+
+                    <Spacer />
+                    <AppText variant='landing' c='black' wdth='40%' text={'OUR PROCESS'} align="center" />
+
                 </Wrapper>
 
                 <BottomSection id="bottomSection">
+                    <ProcessCont>
+                        <Row>
+                            <ProcessBlock background='sand'  mobileheight='10rem' style={{ padding: '3rem 2rem' }}>
+                                <AppText variant='headerSmall' c='pink' align='center' wdth='100%' text="Ideation" />
+                                <br />
+                                <br />
+                                <AppText variant='bodySmall' c='black' wdth='55%' margin='1rem 0 3rem 0 ' 
+                                text={"We desire to create a personalized music experience based on the user's location and the current weather. We conducted extensive research and brainstormed ideas until we settled on using Spotify's API and OpenWeather API."}/>
+                            </ProcessBlock>
+
+                            <ProcessBlock background='sand' mobileheight='10rem' style={{ padding: '3rem 2rem' }}>
+                                <AppText variant='headerSmall' c='pink' align='center' wdth='100%' text="Design" />
+                                <br />
+                                <br />
+                                <AppText variant='bodySmall' c='black' wdth='55%' margin='1rem 1rem 5 0 ' 
+                                text={"Jamjam was inspired by Twitter's UI. With Next.js, Styled-Components, and Material UI, we aim to design a clean and modern interface that is visually appealing and easy to navigate. We paid close attention to typography, color schemes, and visual hierarchy to ensure a cohesive look and feel throughout the app."}/>
+                            </ProcessBlock>
+
+                            <ProcessBlock background='sand' mobileheight='10rem' style={{ padding: '3rem 2rem' }}>
+                                <AppText variant='headerSmall' c='pink' align='center' wdth='100%' text="Development" />
+                                <br />
+                            </ProcessBlock>
+
+                            
+                        </Row>
+                    </ProcessCont>
+
                     <Footer />
                 </BottomSection>
             </div>
