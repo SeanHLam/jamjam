@@ -10,11 +10,12 @@ import { Typography } from "@mui/material";
 import AppText from "../components/apptext/apptext";
 import CreatorCard from "../components/creatorpick/creatorPick";
 import { delay, motion } from "framer-motion"
+import { getProviders, signIn } from "next-auth/react";
 
-const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
-const REDIRECT_URI = "http://localhost:3000/home";
-const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-const RESPONSE_TYPE = "token";
+// const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
+// const REDIRECT_URI = "http://localhost:3000/home";
+// const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+// const RESPONSE_TYPE = "token";
 
 const Wrapper = styled.div`
 display: flex;
@@ -26,7 +27,7 @@ width:100vw;
 min-height:100vh;
 `
 
-export default function Login() {
+export default function Login(providers) {
 
   const container = {
     hidden: { opacity: 0, scale: 0 },
@@ -52,9 +53,8 @@ export default function Login() {
       }
     }
   }
-    const logout = () => {
-      window.localStorage.removeItem("token")
-  }
+  
+
 
   return (
     <div>
@@ -81,7 +81,15 @@ export default function Login() {
                 onHoverEnd={e => {}}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                <Button onClick={logout} href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`} size='small' variant="contained">Login To Spotify</Button>
+                {Object.values(providers).map((provider) => (
+                  <div key={provider.spotify.name}>
+                     <Button onClick={()=> signIn(provider.spotify.id,{callbackUrl:"/home"}) }  size='small' variant="contained">Login To {provider.spotify.name}</Button>
+                  </div>
+                  
+                 
+                ))}
+                
+               
               </motion.div>
             </motion.div>
 
@@ -89,4 +97,11 @@ export default function Login() {
       </Wrapper>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const providers = await getProviders();
+  return {
+    props: { providers },
+  };
 }
