@@ -12,10 +12,7 @@ import CreatorCard from "../components/creatorpick/creatorPick";
 import { Player } from "@lottiefiles/react-lottie-player";
 import AppText from "../components/apptext/apptext";
 
-const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
-const REDIRECT_URI = "http://localhost:3000/home";
-const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-const RESPONSE_TYPE = "token";
+
 
 
 export const Wrapper = styled.div`
@@ -40,20 +37,9 @@ align-items:flex-start;
 `
 
 export default function Home() {
-  const [token, setToken] = useState("")
-
+  
   useEffect(() => {
-    const hash = window.location.hash
-    let token = window.localStorage.getItem("token")
-
-    if (!token && hash) {
-        token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
-
-        window.location.hash = ""
-        window.localStorage.setItem("token", token)
-    }
-
-    setToken(token)
+   
 
 }, [])
 

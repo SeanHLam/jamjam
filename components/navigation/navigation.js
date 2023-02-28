@@ -10,6 +10,7 @@ import Popover from '@mui/material/Popover';
 import { useRouter } from 'next/router'
 import AppText from "../apptext/apptext";
 import { motion } from "framer-motion";
+import { signOut } from "next-auth/react";
 
 
 const Wrapper = styled.div`
@@ -99,8 +100,9 @@ export default function Navigation() {
     };
 
     const logout = () => {
-    window.localStorage.removeItem("token")
-    router.push("/")
+        
+       
+        signOut({callbackUrl:"/"})
     }
 
     return (
