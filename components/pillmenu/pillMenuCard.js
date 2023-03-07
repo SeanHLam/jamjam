@@ -28,15 +28,20 @@ flex-wrap: wrap;
 gap:2%;
 `
 export default function PillMenuCard(
-
+    {sendCategory}
     // const menus = pillCategory.map((menu) => menu)
-
+    
 ){
+    const getCategory = (category) => {
+        
+        sendCategory(category)
+    }
+
     return (
         <Wrapper>
             <Row>
                 {pillCategory.map ((o,i) => 
-                <PillMenu category={pillCategory[i]} key={i}>
+                <PillMenu onPill={() => getCategory(pillCategory[i])} category={pillCategory[i]} key={i}>
                 </PillMenu>
                 )}
             </Row>

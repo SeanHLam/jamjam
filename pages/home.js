@@ -127,8 +127,7 @@ export default function Home() {
 
 }, [])
 
-const { data: session, status } = useSession()
-console.log(session, status)
+
 
 function stylizeLastWord(text, color) {
   const words = text.split(" ");
