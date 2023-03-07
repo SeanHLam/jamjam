@@ -13,24 +13,33 @@ import Navigation from "../components/navigation/navigation";
 import MusicPlayer from "../components/musicplayer/musicPlayer";
 import { padding } from "@mui/system";
 import Footer from "../components/footer/footer";
-
+import { useSession } from "next-auth/react";
+import { playlist } from "../data/playlists";
+import NoMusic from "../components/musicplayer/noMusic";
 export const ButtonWrapper = styled.div`
-display: flex;
-align-items: center;
-padding: 2em 5em;
-`
+  display: flex;
+  align-items: center;
+  padding: 0 0 1em 0em;
+`;
+
+export const PlaylistWrapper = styled.div`
+  padding: 0 0 1em 0em;
+`;
 
 function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
 export default function Music() {
-  const logout = () => {
-    setToken("");
-    window.localStorage.removeItem("token");
-  };
+  const { data: session, status } = useSession();
   const [song, setSong] = useState();
-  const [token, setToken] = useState("");
+  const [category, setCategory] = useState();
+  const [likes, setLikes] = useState([]);
+  const [randomPlaylist, setRandomPlaylist] = useState(0);
+  const [songPosition, setSongPosition] = useState(0);
+  const [playlistLength, setPlaylistLength] = useState(0);
+
+  console.log(session);
   const searchArray = [
     "%25a%25",
     "a%25",
@@ -47,20 +56,10 @@ export default function Music() {
   const randomOffset = randomIntFromInterval(1, 1000);
 
   useEffect(() => {
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
-    if (!token && hash) {
-      token = hash
-        .substring(1)
-        .split("&")
-        .find((elem) => elem.startsWith("access_token"))
-        .split("=")[1];
-
-      window.location.hash = "";
-      window.localStorage.setItem("token", token);
-    }
-    setToken(token);
-  }, []);
+    newSong();
+    console.log(likes);
+  }, [category]);
+  
 
   function getRandomSearch() {
     // A list of all characters that can be chosen.
@@ -85,14 +84,85 @@ export default function Music() {
     return randomSearch;
   }
 
-  
+  const makeCategory = (category) => {
+    setCategory(category);
+  };
+
+  const newSong = async (e) => {
+    if (category === "Random") {
+      randomSong();
+    } else if (
+      category === "Creators Picks" ||
+      category === "New Releases" ||
+      category === "Recommended" ||
+      (category === "Billboard" && category != undefined)
+    ) {
+      playCategory();
+      console.log("this is the category", category);
+    } else if (
+      category === "Genres" ||
+      category === "Weather" ||
+      category === "Decade" ||
+      (category === "Artist" && category != undefined)
+    ) {
+    
+      setRandomPlaylist(randomPlaylist);
+      playRandomPlaylist();
+    }
+  };
+
+  const playRandomPlaylist = async (e) => {
+    axios
+      .get(`https://api.spotify.com/v1/playlists/${playlist[category][randomPlaylist]}`, {
+        headers: {
+          Authorization: `Bearer ${session.user.accessToken}`,
+        },
+        params: {
+          offset: 0,
+        },
+      })
+      .then((response) => {
+        if (response) {
+          const randomSong = randomIntFromInterval(0, response.data.tracks.items.length - 1);
+          setSong(response.data.tracks.items[randomSong].track);
+          
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log("this is the error message", error.response.data);
+        }
+      });
+  };
+
+  const playCategory = async (e) => {
+    axios
+      .get(`https://api.spotify.com/v1/playlists/${playlist[category]}`, {
+        headers: {
+          Authorization: `Bearer ${session.user.accessToken}`,
+        },
+        params: {
+          offset: 0,
+        },
+      })
+      .then((response) => {
+        if (response) {
+          const randomSong = randomIntFromInterval(0, response.data.tracks.items.length - 1);
+          setSong(response.data.tracks.items[randomSong].track);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log("this is the error message", error.response.data);
+        }
+      });
+  };
 
   const randomSong = async (e) => {
-    e.preventDefault();
     axios
       .get("https://api.spotify.com/v1/search", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${session.user.accessToken}`,
         },
         params: {
           type: "track",
@@ -102,6 +172,7 @@ export default function Music() {
       })
       .then((response) => {
         if (response) {
+          console.log(response.data.tracks.items);
           setSong(response.data.tracks.items[15]);
         }
       })
@@ -111,7 +182,63 @@ export default function Music() {
         }
       });
   };
-console.log(token)
+
+  const nextSong = async (e) => {
+    if (category === "Random") {
+      randomSong();
+    } else if (
+      category === "Creators Picks" ||
+      category === "New Releases" ||
+      category === "Recommended" ||
+      (category === "Billboard" && category != undefined)
+    ) {
+      playCategory();
+    } else if (
+      category === "Genres" ||
+      category === "Weather" ||
+      category === "Decade" ||
+      (category === "Artist" && category != undefined)
+    ) {
+      playRandomPlaylist();
+    }
+  };
+
+  const addSong = async (e) => {
+    if (likes.includes(song.id)) {
+      console.log("already liked");
+    } else {
+      setLikes([...likes, song.id]);
+    }
+    nextSong();
+    console.log(likes);
+  };
+
+  const addLikes = async (e) => {
+    axios
+      .put(`https://api.spotify.com/v1/me/tracks`, {
+        headers: {
+          Authorization: `Bearer ${session.user.accessToken}`,
+          'Content-Type': 'application/json',
+
+        },
+        // data: {
+        //   ids: likes.join(',')
+
+        // },
+        query: {
+          ids: likes.join(',')
+        }
+
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log("this is the error message", error.response.data);
+        }
+      });
+
+   
+  };
+
   return (
     <>
       <Head>
@@ -121,21 +248,26 @@ console.log(token)
       </Head>
       <Navigation></Navigation>
       <Wrapper>
-        <PillMenuCard />
+        <PillMenuCard sendCategory={makeCategory} />
+        {song ? <MusicPlayer song={song.id} /> : <NoMusic />}
 
-        {song && <MusicPlayer song={song.id} />}
         <ButtonWrapper>
-          <Button onClick={randomSong} variant="contained">
+          <Button onClick={newSong} variant="contained">
             DISLIKE
           </Button>
-          <Button sx={{margin:2}} onClick={randomSong} variant="contained">
+          <Button sx={{ margin: 2 }} onClick={addSong} variant="contained">
             LIKE
           </Button>
         </ButtonWrapper>
+        <PlaylistWrapper>
+          <Button sx={{ margin: 2 }} onClick={addLikes} variant="contained">
+            ADD TO LIKES
+          </Button>
+        </PlaylistWrapper>
 
         <OpenWeather />
 
-        <Footer/>
+        <Footer />
       </Wrapper>
     </>
   );

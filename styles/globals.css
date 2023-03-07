@@ -23,3 +23,13 @@ a {
     font-size: 10px;
   }
 }
+
+iframe{
+  border: none;
+  display: block;
+  margin: none;
+  padding: none;
+  
+  border: none;
+
+}
