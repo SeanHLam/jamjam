@@ -38,6 +38,7 @@ export default function Music() {
   const [randomPlaylist, setRandomPlaylist] = useState(0);
   const [songPosition, setSongPosition] = useState(0);
   const [playlistLength, setPlaylistLength] = useState(0);
+  const [playlistName, setPlaylistName] = useState("");
 
   console.log(session);
   const searchArray = [
@@ -59,7 +60,6 @@ export default function Music() {
     newSong();
     console.log(likes);
   }, [category]);
-  
 
   function getRandomSearch() {
     // A list of all characters that can be chosen.
@@ -105,7 +105,6 @@ export default function Music() {
       category === "Decade" ||
       (category === "Artist" && category != undefined)
     ) {
-    
       setRandomPlaylist(randomPlaylist);
       playRandomPlaylist();
     }
@@ -113,19 +112,24 @@ export default function Music() {
 
   const playRandomPlaylist = async (e) => {
     axios
-      .get(`https://api.spotify.com/v1/playlists/${playlist[category][randomPlaylist]}`, {
-        headers: {
-          Authorization: `Bearer ${session.user.accessToken}`,
-        },
-        params: {
-          offset: 0,
-        },
-      })
+      .get(
+        `https://api.spotify.com/v1/playlists/${playlist[category][randomPlaylist]}`,
+        {
+          headers: {
+            Authorization: `Bearer ${session.user.accessToken}`,
+          },
+          params: {
+            offset: 0,
+          },
+        }
+      )
       .then((response) => {
         if (response) {
-          const randomSong = randomIntFromInterval(0, response.data.tracks.items.length - 1);
+          const randomSong = randomIntFromInterval(
+            0,
+            response.data.tracks.items.length - 1
+          );
           setSong(response.data.tracks.items[randomSong].track);
-          
         }
       })
       .catch((error) => {
@@ -147,7 +151,10 @@ export default function Music() {
       })
       .then((response) => {
         if (response) {
-          const randomSong = randomIntFromInterval(0, response.data.tracks.items.length - 1);
+          const randomSong = randomIntFromInterval(
+            0,
+            response.data.tracks.items.length - 1
+          );
           setSong(response.data.tracks.items[randomSong].track);
         }
       })
@@ -213,30 +220,63 @@ export default function Music() {
     console.log(likes);
   };
 
-  const addLikes = async (e) => {
-    axios
-      .put(`https://api.spotify.com/v1/me/tracks`, {
-        headers: {
-          Authorization: `Bearer ${session.user.accessToken}`,
-          'Content-Type': 'application/json',
+  const addPlaylist = async (e) => {
+    console.log(session);
+    if (playlistName === "") {
+      axios
+        .post(`https://api.spotify.com/v1/me/playlists`, {
+          headers: {
+            Authorization: `Bearer "${session.user.accessToken}"`,
+            ContentType: 'application/json',
+            Accept: 'application/json'
+          },
+          data: {
+            name: "My Playlist",
+            description: "My Playlist",
+            public: false,
+          },
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log("this is the error message", error.response.data);
+          }
+        });
+    }
 
-        },
-        // data: {
-        //   ids: likes.join(',')
+    // axios
+    //   .put(`https://api.spotify.com/v1/me/tracks`, {
+    //     headers: {
+    //       Authorization: `Bearer ${session.user.accessToken}`,
+    //       'Content-Type': 'application/json',
 
-        // },
-        query: {
-          ids: likes.join(',')
-        }
+    //     },
+    //     data: {
+    //       // ids: likes.join(',')
+    //       ids: "2t0Ci12vaJaYzEmsJL2S1X"
 
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log("this is the error message", error.response.data);
-        }
-      });
+    //     },
 
-   
+    //   })
+    //   .catch((error) => {
+    //     if (error.response) {
+    //       console.log("this is the error message", error.response.data);
+    //     }
+    //   });
+
+    // axios
+    //   .get("https://api.spotify.com/v1/me/tracks?limit=50", {
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${session.user.accessToken}`,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((error) => {
+    //     console.error(error);
+    //   });
   };
 
   return (
@@ -260,8 +300,8 @@ export default function Music() {
           </Button>
         </ButtonWrapper>
         <PlaylistWrapper>
-          <Button sx={{ margin: 2 }} onClick={addLikes} variant="contained">
-            ADD TO LIKES
+          <Button sx={{ margin: 2 }} onClick={addPlaylist} variant="contained">
+            ADD {likes.length} TO PLAYLIST
           </Button>
         </PlaylistWrapper>
 
