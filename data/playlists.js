@@ -5,14 +5,16 @@ export const playlist = {
         "37i9dQZF1DXbITWG1ZJKYt",
         "27Zm1P410dPfedsdoO9fqm",
     ],
-    "Weather":[
-        "37i9dQZF1DWTJ7xPn4vNaz",
-        "70N5mgNl3QBQB09zXoa72h",
+    "Weather":{
 
-    ],
+    },
     "Decade":[
+        "37i9dQZF1DXaKIA8E7WcJj",
         "37i9dQZF1DWTJ7xPn4vNaz",
         "70N5mgNl3QBQB09zXoa72h",
+        "37i9dQZF1EQn2GRFTFMl2A",
+        "37i9dQZF1DX4o1oenSJRJd",
+        "37i9dQZF1DX5Ejj0EkURtP",
 
     ],
     "Recommended":"2P0Zt0ThiIedBMREO2i93C",
@@ -24,6 +26,7 @@ export const playlist = {
 
     ]
 }
+
 
 
 //set playlist or artist name to display on page
