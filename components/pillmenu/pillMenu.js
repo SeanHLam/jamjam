@@ -33,7 +33,7 @@ export default function PillMenu({
     category='Sample Category'
 }){
     return(
-        <Wrapper>
+        <Wrapper className="pill"> 
         <Pill onClick={onPill}>
             <PillText variant='pill'>{category}</PillText>
         </Pill>

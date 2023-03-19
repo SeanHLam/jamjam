@@ -36,7 +36,7 @@ export default function NoMusic({
 }){
     return (
         
-     <Wrapper>
+     <Wrapper className="NoMusic">
         <AppText text="Select A Category" variant='header' align='center' wdth='100' c='sand'></AppText>
      </Wrapper>
     )
