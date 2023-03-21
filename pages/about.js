@@ -110,7 +110,6 @@ border-radius:20% 20% 0% 0%;
 @media (max-width: 600px) {
   flex-direction: column;
 }
-
 `
 
 const FillTextPink = styled.span`
