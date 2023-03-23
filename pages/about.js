@@ -21,9 +21,26 @@ flex-direction: column;
 align-items: center;
 width: 100vw;
 min-height: 110vh;
+
+@media (max-width: 600px) {
+
+}
+
+@media (min-width: 701px) and (max-width: 1120px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 60vh;
+}
 `
 const Spacer = styled.div`
 margin-top: 8rem;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+    margin-top: 5rem;
+}
 `
 
 const BlockCont = styled.div`
@@ -32,6 +49,19 @@ grid-template-columns: 1fr 1fr;
 grid-template-rows: 1fr 1fr;
 gap:2rem;
 margin-right: 2rem;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: 2rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap:2rem;
+
+}
 
 
 @media (max-width: 600px) {
@@ -54,11 +84,25 @@ margin:3rem 0 5rem 0;
 width:100%;
 justify-content:space-around;
 padding: 2em 5em;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+    margin: 2rem 0 5rem 0;
+}
 `
 
 const Column = styled.div`
 display:flex;
 flex-direction:column;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+    flex-direction: column;
+    align-items: fkex-start;
+    justify-content: flex-start;
+}
+
+@media (max-width: 600px) {
+    
+}
 `
 
 const Photo = styled(Image)`
@@ -81,6 +125,11 @@ height: ${props => props.height};
 margin: ${props => props.margin};
 box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px;
 
+@media (min-width: 701px) and (max-width: 1120px) {
+    width:10rem;
+    height: 12rem;
+}
+
 
 @media (max-width: 600px) {
   width: 8rem;
@@ -98,6 +147,25 @@ gap:5rem;
 `
 
 const BottomSection = styled.section`
+display:flex;
+flex-direction:column;
+justify-content:space-evenly;
+align-items:center;
+width:100%;
+background-color:#EDEDE8;
+padding:6rem 0rem 0rem 0rem;
+border-radius:20% 20% 0% 0%;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+    justify-content: center;
+    padding:6rem 0rem 0rem 0rem; 
+    width:100vw;
+}
+
+@media (max-width: 600px) {
+  flex-direction: column;
+}
+
 display:flex;
 flex-direction:column;
 justify-content:space-evenly;
@@ -171,6 +239,11 @@ justify-content:space-around;
 width:100%;
 margin-bottom:5rem;
 
+@media (min-width: 701px) and (max-width: 1120px) {
+    flex-direction: column;
+    justify-content:center;
+}
+
 @media (max-width: 600px) {
     display: flex;
     flex-direction: column;
@@ -186,6 +259,11 @@ height:22rem;
 height: ${props => props.height};
 margin: ${props => props.margin};
 box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+    width:18rem;
+    height:24rem;
+}
 
 
 @media (max-width: 600px) {
@@ -206,7 +284,7 @@ export default function About() {
                 <link rel="icon" href="/favicon.svg" />
             </Head>
 
-            <div>
+            <div className={styles.mainAbout}>
                 <Navigation></Navigation>
                 <Wrapper>
                     <LandingContainer>
@@ -272,20 +350,20 @@ export default function About() {
                 <BottomSection id="bottomSection">
                     <ProcessCont>
                         <Row>
-                            <ProcessBlock background='sand'  mobileheight='10rem' style={{ padding: '3rem 2rem' }}>
+                            <ProcessBlock background='sand' mobileheight='10rem' style={{ padding: '3rem 2rem' }}>
                                 <AppText variant='headerSmall' c='pink' align='center' wdth='100%' text="Ideation" />
                                 <br />
                                 <br />
-                                <AppText variant='bodySmall' c='black' wdth='55%' margin='1rem 0 3rem 0 ' 
-                                text={"We desire to create a personalized music experience based on the user's location and the current weather. We conducted extensive research and brainstormed ideas until we settled on using Spotify's API and OpenWeather API."}/>
+                                <AppText variant='bodySmall' c='black' wdth='55%' margin='1rem 0 3rem 0 '
+                                    text={"We desire to create a personalized music experience based on the user's location and the current weather. We conducted extensive research and brainstormed ideas until we settled on using Spotify's API and OpenWeather API."} />
                             </ProcessBlock>
 
                             <ProcessBlock background='sand' mobileheight='10rem' style={{ padding: '3rem 2rem' }}>
                                 <AppText variant='headerSmall' c='pink' align='center' wdth='100%' text="Design" />
                                 <br />
                                 <br />
-                                <AppText variant='bodySmall' c='black' wdth='55%' margin='1rem 1rem 5 0 ' 
-                                text={"Jamjam was inspired by Twitter's UI. With Next.js, Styled-Components, and Material UI, we aim to design a clean and modern interface that is visually appealing and easy to navigate. We paid close attention to typography, color schemes, and visual hierarchy to ensure a cohesive look and feel throughout the app."}/>
+                                <AppText variant='bodySmall' c='black' wdth='55%' margin='1rem 1rem 5 0 '
+                                    text={"Jamjam was inspired by Twitter's UI. With Next.js, Styled-Components, and Material UI, we aim to design a clean and modern interface that is visually appealing and easy to navigate. We paid close attention to typography, color schemes, and visual hierarchy to ensure a cohesive look and feel throughout the app."} />
                             </ProcessBlock>
 
                             <ProcessBlock background='sand' mobileheight='10rem' style={{ padding: '3rem 2rem' }}>
@@ -293,7 +371,7 @@ export default function About() {
                                 <br />
                             </ProcessBlock>
 
-                            
+
                         </Row>
                     </ProcessCont>
 
