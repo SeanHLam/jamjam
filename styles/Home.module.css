@@ -211,3 +211,22 @@ z-index:5;
 
 
 }
+
+/* Tablet - Ipad Air */
+@media (min-width: 701px) and (max-width: 1120px) {
+
+.mainAbout {
+  /* margin-top: 3rem;
+  margin-left: 3rem;
+  margin-right: 3rem; */
+}
+
+.cog {
+  transform: translateX(80px);
+  width: 20rem;
+  top: 30rem;
+  right: 0;
+  position:absolute;
+}
+
+}
