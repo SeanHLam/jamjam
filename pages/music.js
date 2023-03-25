@@ -16,14 +16,20 @@ import Footer from "../components/footer/footer";
 import { useSession } from "next-auth/react";
 import { playlist } from "../data/playlists";
 import NoMusic from "../components/musicplayer/noMusic";
+import AppText from "../components/apptext/apptext";
+import Popup from "../components/popuup/popup";
 export const ButtonWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
   padding: 0 0 1em 0em;
 `;
 
+
 export const PlaylistWrapper = styled.div`
   padding: 0 0 1em 0em;
+  margin-bottom: 3em;
 `;
 
 function randomIntFromInterval(min, max) {
@@ -33,7 +39,7 @@ function randomIntFromInterval(min, max) {
 export default function Music() {
   const { data: session, status } = useSession();
   const [song, setSong] = useState();
-  const [category, setCategory] = useState();
+  const [category, setCategory] = useState("");
   const [likes, setLikes] = useState([]);
   const [randomPlaylist, setRandomPlaylist] = useState(0);
   const [songPosition, setSongPosition] = useState(0);
@@ -211,72 +217,42 @@ export default function Music() {
   };
 
   const addSong = async (e) => {
-    if (likes.includes(song.id)) {
-      console.log("already liked");
-    } else {
-      setLikes([...likes, song.id]);
+    if(song){
+      if (likes.includes(song.id)) {
+        console.log("already liked");
+      } else {
+        setLikes([...likes, song.id]);
+      }
+      nextSong();
+      console.log(likes);
+
     }
-    nextSong();
-    console.log(likes);
+   
   };
 
   const addPlaylist = async (e) => {
-    console.log(session);
-    if (playlistName === "") {
-      axios
-        .post(`https://api.spotify.com/v1/me/playlists`, {
-          headers: {
-            Authorization: `Bearer "${session.user.accessToken}"`,
-            ContentType: 'application/json',
-            Accept: 'application/json'
-          },
-          data: {
-            name: "My Playlist",
-            description: "My Playlist",
-            public: false,
-          },
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log("this is the error message", error.response.data);
-          }
-        });
-    }
+    //console.log(session);
+    console.log(likes.join(","));
+    
+    axios
+      .put(`https://api.spotify.com/v1/me/tracks?ids=${likes.join(",")}`, 
+      
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${session.user.accessToken}`,
+          'Content-Type': 'application/json',
 
-    // axios
-    //   .put(`https://api.spotify.com/v1/me/tracks`, {
-    //     headers: {
-    //       Authorization: `Bearer ${session.user.accessToken}`,
-    //       'Content-Type': 'application/json',
+        },
 
-    //     },
-    //     data: {
-    //       // ids: likes.join(',')
-    //       ids: "2t0Ci12vaJaYzEmsJL2S1X"
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log("this is the error message", error.response.data);
+        }
+      });
 
-    //     },
-
-    //   })
-    //   .catch((error) => {
-    //     if (error.response) {
-    //       console.log("this is the error message", error.response.data);
-    //     }
-    //   });
-
-    // axios
-    //   .get("https://api.spotify.com/v1/me/tracks?limit=50", {
-    //     headers: {
-    //       Accept: "application/json",
-    //       "Content-Type": "application/json",
-    //       Authorization: `Bearer ${session.user.accessToken}`,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+      setLikes([]);
   };
 
   return (
@@ -289,21 +265,24 @@ export default function Music() {
       <Navigation></Navigation>
       <Wrapper>
         <PillMenuCard sendCategory={makeCategory} />
-        {song ? <MusicPlayer song={song.id} /> : <NoMusic />}
 
+        <AppText wdth="300" align="center" text={`Currently Playing: ${category}`} />
+        {song ? <MusicPlayer song={song.id} /> : <NoMusic />}
+       
         <ButtonWrapper>
           <Button onClick={newSong} variant="contained">
             DISLIKE
           </Button>
-          <Button sx={{ margin: 2 }} onClick={addSong} variant="contained">
+          <Button sx={{ margin: .5 }} onClick={addSong} variant="contained">
             LIKE
           </Button>
         </ButtonWrapper>
-        <PlaylistWrapper>
-          <Button sx={{ margin: 2 }} onClick={addPlaylist} variant="contained">
-            ADD {likes.length} TO PLAYLIST
-          </Button>
-        </PlaylistWrapper>
+        <Button sx={{ marginBottom: 2 }} onClick={addPlaylist} variant="contained">
+            ADD {likes.length} TO LIKES
+        </Button>
+       
+        <PlaylistWrapper/>
+  
 
         <OpenWeather />
 

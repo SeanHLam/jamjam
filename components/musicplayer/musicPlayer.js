@@ -6,10 +6,9 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-line-height:0px;
 display:block;
-margin:0 auto;
 height:350px;
+margin:1em auto;
 
 `
 
@@ -18,12 +17,10 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-line-height:0px;
+border:none;
+max-height:400px;
 display:block;
-margin:0 auto;
-
-
-
+margin:0 auto;  
 `
 
 export default function MusicPlayer({
@@ -33,9 +30,10 @@ export default function MusicPlayer({
     return (
         
      <Wrapper>
+        
      <IEmbed
               src={`https://open.spotify.com/embed/track/${song}`}
-              width="400"
+              width="300"
               height="400"
               frameBorder="0"
               allowtransparency="true"

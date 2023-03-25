@@ -9,10 +9,10 @@ align-items: center;
 justify-content: center;
 line-height:0px;
 
-margin:0 auto;
+margin:1em auto;
 height:350px;
 background-color: var(--pink-color);
-width:40%;
+width:300px;
 border-radius: 10px;
 
 `
