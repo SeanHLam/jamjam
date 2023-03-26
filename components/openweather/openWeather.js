@@ -172,6 +172,7 @@ export default function OpenWeather() {
       weather.map((w, index) => {
           return (
             <Player
+              key={index}
               className={styles.animation}
               autoplay
               loop
@@ -182,6 +183,7 @@ export default function OpenWeather() {
           vancouverWeather.map((w, index) => {
             return (
               <Player
+                key={index}
                 className={styles.animation}
                 autoplay
                 loop
@@ -218,7 +220,9 @@ export default function OpenWeather() {
 
         {weather ? (
           weather.map((w, index) => (
-            <Column className={styles.weatherInfo}>
+            <Column
+            key={index}
+            className={styles.weatherInfo}>
               <TextRow>
                 <AppText text={city} variant='headerSmall' wdth='auto' c='sand'></AppText>
                 <AppText text={country} variant='bodySmall' c='gray'></AppText>

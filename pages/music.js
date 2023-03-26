@@ -64,7 +64,6 @@ export default function Music() {
 
   useEffect(() => {
     newSong();
-    console.log(likes);
   }, [category]);
 
   function getRandomSearch() {
