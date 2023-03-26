@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 import Button from "@mui/material/Button";
 import { useState } from "react";
-import AppText from "../../components/apptext/apptext";
+import AppText from "../../components/apptext/appText";
 import { CardMedia } from '@mui/material';
 import styled from 'styled-components';
 import Box from '@mui/material/Box';

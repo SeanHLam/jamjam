@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import Navigation from '../components/navigation/navigation'
 import CreatorCard from "../components/creatorpick/creatorPick";
 import { Player } from "@lottiefiles/react-lottie-player";
-import AppText from "../components/apptext/apptext";
+import AppText from "../components/apptext/appText";
 import LandingCard from "../components/landingcard/landingCard";
 import AppButton from "../components/button/button";
 import Footer from "../components/footer/footer";

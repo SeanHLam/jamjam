@@ -16,7 +16,7 @@ import Footer from "../components/footer/footer";
 import { useSession } from "next-auth/react";
 import { playlist } from "../data/playlists";
 import NoMusic from "../components/musicplayer/noMusic";
-import AppText from "../components/apptext/apptext";
+import AppText from "../components/apptext/appText";
 import Popup from "../components/popuup/popup";
 export const ButtonWrapper = styled.div`
   display: flex;

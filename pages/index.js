@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import OpenWeather from '../components/openweather/openWeather'
 import { useState } from "react";
 import { Typography } from "@mui/material";
-import AppText from "../components/apptext/apptext";
 import CreatorCard from "../components/creatorpick/creatorPick";
 import { delay, motion } from "framer-motion"
 import { getProviders, signIn } from "next-auth/react";
