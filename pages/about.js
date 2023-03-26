@@ -20,10 +20,15 @@ display: flex;
 flex-direction: column;
 align-items: center;
 width: 100vw;
-min-height: 110vh;
+min-height: 100vh;
 
 @media (max-width: 600px) {
-
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 60vh;
 }
 
 @media (min-width: 701px) and (max-width: 1120px) {
@@ -40,6 +45,10 @@ margin-top: 8rem;
 
 @media (min-width: 701px) and (max-width: 1120px) {
     margin-top: 5rem;
+}
+
+@media (max-width: 600px) {
+    margin-top: 3rem;
 }
 `
 
@@ -261,15 +270,15 @@ margin: ${props => props.margin};
 box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px;
 
 @media (min-width: 701px) and (max-width: 1120px) {
-    width:18rem;
-    height:24rem;
+    width:30rem;
+    height:18rem;
 }
 
 
 @media (max-width: 600px) {
-  width: 8rem;
-  height: ${props => props.mobileheight};
-  border-radius:1.5rem;
+    width:18rem;
+    height:18rem;
+    border-radius:1rem;
 }
 `
 
@@ -347,6 +356,7 @@ export default function About() {
 
                 </Wrapper>
 
+                <Spacer />
                 <BottomSection id="bottomSection">
                     <ProcessCont>
                         <Row>
