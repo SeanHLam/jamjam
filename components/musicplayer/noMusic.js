@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Typography } from "@mui/material";
-import AppText from '../apptext/apptext';
+import AppText from '../apptext/appText';
 
 const Wrapper = styled.div`
 display: flex;

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import AppText from "../apptext/apptext";
+import AppText from "../apptext/appText";
 
 const Wrapper = styled.div`
 display:flex;
