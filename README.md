@@ -9,11 +9,19 @@ When you're done you may add all of your liked songs into your spotify library w
 
 # Tools & Resources
 
-[Spotify API: ](https://developer.spotify.com/documentation/web-api/)
+Next.js
 
-[Spotify Music:](https://open.spotify.com/)
+NextAuth
 
-[OpenWeather:](https://openweathermap.org/)
+Styled Components
+
+MUI
+
+[Spotify API ](https://developer.spotify.com/documentation/web-api/)
+
+[Spotify Music](https://open.spotify.com/)
+
+[OpenWeather](https://openweathermap.org/)
 
 
 
