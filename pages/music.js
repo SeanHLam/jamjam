@@ -14,7 +14,7 @@ import MusicPlayer from "../components/musicplayer/musicPlayer";
 import { padding } from "@mui/system";
 import Footer from "../components/footer/footer";
 import { useSession } from "next-auth/react";
-import { playlist } from "../data/playlists";
+import { playlist, weatherPlaylist } from "../data/playlists";
 import NoMusic from "../components/musicplayer/noMusic";
 import AppText from "../components/apptext/appText";
 import Popup from "../components/popuup/popup";
@@ -45,8 +45,8 @@ export default function Music() {
   const [songPosition, setSongPosition] = useState(0);
   const [playlistLength, setPlaylistLength] = useState(0);
   const [playlistName, setPlaylistName] = useState("");
+  const [weather, setWeather] = useState({main:"Clouds"});
 
-  console.log(session);
   const searchArray = [
     "%25a%25",
     "a%25",
@@ -93,6 +93,12 @@ export default function Music() {
     setCategory(category);
   };
 
+  const makeWeather = (weather) => {
+    console.log("this is the weather", weather);
+    setWeather(weather);
+  };
+
+  
   const newSong = async (e) => {
     if (category === "Random") {
       randomSong();
@@ -106,12 +112,13 @@ export default function Music() {
       console.log("this is the category", category);
     } else if (
       category === "Genres" ||
-      category === "Weather" ||
       category === "Decade" ||
       (category === "Artist" && category != undefined)
     ) {
       setRandomPlaylist(randomPlaylist);
       playRandomPlaylist();
+    }else if (category === "Weather"){
+      playWeatherPlaylist()
     }
   };
 
@@ -147,6 +154,32 @@ export default function Music() {
   const playCategory = async (e) => {
     axios
       .get(`https://api.spotify.com/v1/playlists/${playlist[category]}`, {
+        headers: {
+          Authorization: `Bearer ${session.user.accessToken}`,
+        },
+        params: {
+          offset: 0,
+        },
+      })
+      .then((response) => {
+        if (response) {
+          const randomSong = randomIntFromInterval(
+            0,
+            response.data.tracks.items.length - 1
+          );
+          setSong(response.data.tracks.items[randomSong].track);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log("this is the error message", error.response.data);
+        }
+      });
+  };
+  console.log("this is the weather", weather);
+  const playWeatherPlaylist = async (e) => {
+    axios
+      .get(`https://api.spotify.com/v1/playlists/${weatherPlaylist[weather.main].music}`, {
         headers: {
           Authorization: `Bearer ${session.user.accessToken}`,
         },
@@ -207,11 +240,12 @@ export default function Music() {
       playCategory();
     } else if (
       category === "Genres" ||
-      category === "Weather" ||
       category === "Decade" ||
       (category === "Artist" && category != undefined)
     ) {
       playRandomPlaylist();
+    }else if (category === "Weather"){
+      playWeatherPlaylist()
     }
   };
 
@@ -223,7 +257,7 @@ export default function Music() {
         setLikes([...likes, song.id]);
       }
       nextSong();
-      console.log(likes);
+     
 
     }
    
@@ -254,6 +288,7 @@ export default function Music() {
       setLikes([]);
   };
 
+  console.log("the weather", weather)
   return (
     <>
       <Head>
@@ -285,7 +320,7 @@ export default function Music() {
         <PlaylistWrapper/>
   
 
-        <OpenWeather />
+        <OpenWeather sendWeather={makeWeather} />
 
         <Footer />
       </Wrapper>

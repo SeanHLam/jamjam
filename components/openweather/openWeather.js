@@ -10,6 +10,7 @@ import Box from '@mui/material/Box';
 import Button from "@mui/material/Button";
 import TextField from '@mui/material/TextField';
 import PlaylistCard from './playlistCard';
+import playlist from '../../data/playlists';
 
 const Wrapper = styled.div`
 height:100%;
@@ -108,7 +109,7 @@ const style = {
   pb: 1.5,
 };
 
-export default function OpenWeather() {
+export default function OpenWeather({sendWeather}) {
 
   const [location, setLocation] = useState('');
   const [data, setData] = useState({});
@@ -132,7 +133,7 @@ export default function OpenWeather() {
   var units = "metric";
 
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=${units}&appid=${apiKey}`;
-  console.log(url)
+  
 
 
   const searchLocation = (e) => {
@@ -176,13 +177,24 @@ export default function OpenWeather() {
         const vancouver = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Vancouver&units=metric&appid=${apiKey}`);
         setVancouverData(vancouver.data);
         setVancouverWeather(vancouver.data.weather);
+        
       } catch (err2) {
         console.log(err2);
       }
     };
+    console.log(weather);
+    getWeather();
     fetchData();
-  }, []);
+  }, [weather]);
 
+
+  const getWeather = (e) => {
+    if(weather) {
+      sendWeather(weather[0]);
+    }else if(vancouverWeather){
+      sendWeather(vancouverWeather[0]);
+    }
+  }
 
   return (
     <Wrapper>
@@ -270,8 +282,11 @@ export default function OpenWeather() {
         )}
       
           </Row>
-
-          <PlaylistCard/>
+          {weather ? <PlaylistCard  currWeather={weather} /> : 
+          vancouverData &&
+            <PlaylistCard  currWeather={vancouverWeather} />
+          }
+          
 
           {trigger ?
             <Column>
