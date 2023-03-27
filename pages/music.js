@@ -94,7 +94,6 @@ export default function Music() {
   };
 
   const makeWeather = (weather) => {
-    console.log("this is the weather", weather);
     setWeather(weather);
   };
 
@@ -109,7 +108,7 @@ export default function Music() {
       (category === "Billboard" && category != undefined)
     ) {
       playCategory();
-      console.log("this is the category", category);
+      g("this is the category", category);
     } else if (
       category === "Genres" ||
       category === "Decade" ||
@@ -146,7 +145,7 @@ export default function Music() {
       })
       .catch((error) => {
         if (error.response) {
-          console.log("this is the error message", error.response.data);
+          g("this is the error message", error.response.data);
         }
       });
   };
@@ -172,11 +171,11 @@ export default function Music() {
       })
       .catch((error) => {
         if (error.response) {
-          console.log("this is the error message", error.response.data);
+          g("this is the error message", error.response.data);
         }
       });
   };
-  console.log("this is the weather", weather);
+  g("this is the weather", weather);
   const playWeatherPlaylist = async (e) => {
     axios
       .get(`https://api.spotify.com/v1/playlists/${weatherPlaylist[weather.main].music}`, {
@@ -198,7 +197,7 @@ export default function Music() {
       })
       .catch((error) => {
         if (error.response) {
-          console.log("this is the error message", error.response.data);
+          g("this is the error message", error.response.data);
         }
       });
   };
@@ -217,13 +216,13 @@ export default function Music() {
       })
       .then((response) => {
         if (response) {
-          console.log(response.data.tracks.items);
+          g(response.data.tracks.items);
           setSong(response.data.tracks.items[15]);
         }
       })
       .catch((error) => {
         if (error.response) {
-          console.log("this is the error message", error.response.data);
+          g("this is the error message", error.response.data);
         }
       });
   };
@@ -252,7 +251,7 @@ export default function Music() {
   const addSong = async (e) => {
     if(song){
       if (likes.includes(song.id)) {
-        console.log("already liked");
+        g("already liked");
       } else {
         setLikes([...likes, song.id]);
       }
@@ -264,8 +263,8 @@ export default function Music() {
   };
 
   const addPlaylist = async (e) => {
-    //console.log(session);
-    console.log(likes.join(","));
+    //g(session);
+    g(likes.join(","));
     
     axios
       .put(`https://api.spotify.com/v1/me/tracks?ids=${likes.join(",")}`, 
@@ -281,14 +280,14 @@ export default function Music() {
       })
       .catch((error) => {
         if (error.response) {
-          console.log("this is the error message", error.response.data);
+          g("this is the error message", error.response.data);
         }
       });
 
       setLikes([]);
   };
 
-  console.log("the weather", weather)
+  g("the weather", weather)
   return (
     <>
       <Head>
