@@ -387,7 +387,7 @@ export default function About() {
 
                             <Block background='#dd727f' height='20rem' mobileheight='8rem'>
                                 <AppText variant='headerSmall' c='sand' align='center' wdth='100%' text="Thi" />
-                                <Image2 src='/jason.png' width={100} height={150}></Image2>
+                                <Image2 src='/thi.png' width={100} height={150}></Image2>
                             </Block>
 
                             <Player

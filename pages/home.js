@@ -169,7 +169,7 @@ padding-top:5rem;
 `
 
 export default function Home() {
-
+  const [weather, setWeather] = useState(null);
 
   const router = useRouter()
 
@@ -180,10 +180,12 @@ export default function Home() {
 }, [])
 
 
+  
 
 function stylizeLastWord(text, color) {
   const words = text.split(" ");
   const lastWord = words.pop();
+ 
 
   return (
     <>
@@ -192,7 +194,14 @@ function stylizeLastWord(text, color) {
     </>
   );
 
+
+
 }
+
+
+const makeWeather = (weather) => {
+  setWeather(weather);
+};
 
   return (
     <>
@@ -250,7 +259,7 @@ function stylizeLastWord(text, color) {
 
         <BottomCont>
         <CreatorCard/>
-        <OpenWeather/>
+        <OpenWeather sendWeather={makeWeather}/>
         </BottomCont>
 
         <Footer/>

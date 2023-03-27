@@ -216,7 +216,7 @@ export default function Music() {
       })
       .then((response) => {
         if (response) {
-         
+          console.log(response)
           setSong(response.data.tracks.items[15]);
         }
       })

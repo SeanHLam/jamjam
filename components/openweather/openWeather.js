@@ -20,12 +20,22 @@ position:relative;
 
 const Container = styled.div`
 padding:5%;
-height:22rem;
-width:35rem;
+height:300px;
+width:500px;
 background-color: #DD727F;
 position:relative;
 border-radius:10px;
 overflow:hidden;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+  width: 400px;
+  height:275px;
+};
+
+@media (max-width: 700px) {
+  width: 350px;
+  height:225px;
+}
 `
 
 const OvalOverlay = styled.div`
@@ -39,6 +49,15 @@ margin:auto;
 top:50%;
 right:0;
 left:0;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+  width: 400px;
+  height:275px;
+};
+
+@media (max-width: 700px) {
+  height:90%;
+  width:75%;
 `
 
 const Row = styled.div`
@@ -143,12 +162,6 @@ export default function OpenWeather({sendWeather}) {
   }
 
   const [vancouverWeather, setVancouverWeather] = useState(null);
-  // const [vancouverData, setVancouverData] = useState({
-  //   name: 'Vancouver',
-  //   sys: { country: 'CA' },
-  //   main: { temp: 0 },
-  //   weather: [{ main: '' }]
-  // });
 
   const [vancouverData, setVancouverData] = useState();
 
