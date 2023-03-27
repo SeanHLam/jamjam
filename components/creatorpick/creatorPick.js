@@ -27,7 +27,7 @@ align-items:flex-start;
 export default function CreatorCard() {
     const handleClick = (path) => {
         if (path === "/music") {
-            console.log("Open Music Roulette");
+          
         }
     }
     return (

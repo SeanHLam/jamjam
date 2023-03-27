@@ -5,9 +5,10 @@ import AppText from "../apptext/apptext";
 import { useRef } from "react";
 import styles from "../../styles/Home.module.css";
 import { Player } from "@lottiefiles/react-lottie-player";
+import{ weatherPlaylist} from "../../data/playlists";
 
 const Row = styled.div`
-width:100%;
+width:100%; 
 display:flex;
 flex-direction:row;
 align-items:flex-end;
@@ -22,7 +23,9 @@ align-items:flex-start;
 `
 
 export default function PlaylistCard({
-    playlist='Sample',
+   
+    currWeather,
+    clickPlay,
 }){
 
     const animation = useRef(null);
@@ -35,18 +38,19 @@ export default function PlaylistCard({
 
     }
 
+
     return (
         <Row>
             <Image
-            src='/boiler.jpeg'
+           src={weatherPlaylist[currWeather[0].main].image}
             width={125}
             height={125}
             className={styles.pickImage}/>
 
             <Column>
             <AppText text='Recommended for you:' wdth='100%' c='gray' variant='bodySmall'/>
-            <AppText text={playlist} c='black' variant='bodyBold' margin='0 0 1rem 0' />
-            <AppButton variant='contained' buttonSize='buttonMedium' bg='black' textcolor='sand' textWidth='100%' text='PLAY'/>
+            <AppText text={weatherPlaylist[currWeather[0].main].name} c='black' variant='bodyBold' margin='0 0 1rem 0'  wdth="20"/>
+            <AppButton onClick={clickPlay} variant='contained' buttonSize='buttonMedium' bg='black' textcolor='sand' textWidth='100%' text='PLAY'/>
             </Column>
 
             <div onClick={refreshList} className={styles.refresh}>
