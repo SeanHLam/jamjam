@@ -3,7 +3,7 @@ import styles from "../../styles/Home.module.css";
 import { useState, useEffect} from 'react';
 import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
-import AppText from '../apptext/apptext';
+import AppText from '../apptext/appText';
 import { Player } from '@lottiefiles/react-lottie-player';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -123,7 +123,7 @@ export default function OpenWeather({sendWeather}) {
         .then((response) => {
           console.clear()
           setData(response.data);
-          console.log(response.data);
+          g(response.data);
           setWeather(response.data.weather);
           setErrorMessage("");
           setTrigger(false);
@@ -132,7 +132,7 @@ export default function OpenWeather({sendWeather}) {
           setCountry(response.data.sys.country);
           handleClose();
         }).catch(err => {
-          console.log(err);
+          g(err);
           setErrorMessage("Invalid Location. Please enter another location!");
           setData({});
           setWeather();
@@ -160,10 +160,10 @@ export default function OpenWeather({sendWeather}) {
         setVancouverWeather(vancouver.data.weather);
         
       } catch (err2) {
-        console.log(err2);
+        g(err2);
       }
     };
-    console.log(weather);
+    g(weather);
     getWeather();
     fetchData();
   }, [weather]);

@@ -4,7 +4,7 @@ import spotifyApi, { LOGIN_URL } from "../../../lib/spotify.js"
 
 async function refreshAccessToken(token){
     try {
-        console.log("refreshing token" , token, token.account.refresh_token)
+        ("refreshing token" , token, token.account.refresh_token)
         //spotifyApi.setAccessToken(token.accessToken);
         spotifyApi.setAccessToken(token.accessToken);
         // 
@@ -13,7 +13,7 @@ async function refreshAccessToken(token){
        
 
         const {body: refreshedToken} = await spotifyApi.refreshAccessToken();
-        console.log("refreshed token", refreshedToken)
+        ("refreshed token", refreshedToken)
 
         return {
             ...token,
@@ -24,7 +24,7 @@ async function refreshAccessToken(token){
         }
 
     }catch(err) {
-        console.log("Refresh Error:",err)
+        ("Refresh Error:",err)
         return {
             ...token,
             err: "refresh token error"
@@ -62,11 +62,11 @@ export default NextAuth({
             }
            //returns previous token if token has not expired
             if (token.accessTokenExpires > Date.now()) {
-                console.log("token is still valid")
+                ("token is still valid")
                 return token
             }
 
-            console.log("token has expired")
+          
             return await refreshAccessToken(token)
             //access token expires
 
