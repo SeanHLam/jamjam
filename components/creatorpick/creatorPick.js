@@ -7,6 +7,9 @@ import { CardMedia } from '@mui/material';
 import styled from 'styled-components';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
+import { useRouter } from "next/router";
+import musicPicks from '../../data/creatorPick.json'
+import {useEffect } from "react";
 
 const Wrapper = styled.div`
 display:flex;
@@ -35,11 +38,27 @@ align-items:flex-start;
 
 
 export default function CreatorCard() {
+
+    const router = useRouter();
+
+    const [randomNumber, setRandomNumber] = useState(0)
+
     const handleClick = (path) => {
         if (path === "/music") {
           
         }
     }
+    const clickPlay = () => {
+        router.push(`/music`)
+ 
+     }
+
+     useEffect(() => {
+        const newRandomNumber = Math.floor(Math.random() * 3)
+        setRandomNumber(newRandomNumber)
+      }, [])
+ 
+     
     return (
         <Wrapper>
         <AppText variant='headerSmall' text='CREATOR&#39;S PICKS' c='black' margin='0 0 1rem 1rem' padding='0 0 0 0rem' wdth='100%'></AppText> 
@@ -57,23 +76,15 @@ export default function CreatorCard() {
             <Row>
             <div className={styles.pickPlay}>
                 <ImageCont>
-                <Image className={styles.pickImage} src="/boiler.jpeg" width={150} height={150}></Image>
+                <Image className={styles.pickImage} src={musicPicks.songs[randomNumber].Song} width={150} height={150}></Image>
                 </ImageCont>
-                {/* <Button
-                    variant="contained"
-                    size="medium"
-                    bg="pink"
-                    onClick={() => handleClick("/music")}
-                    href="/music">
-                    <AppText variant='buttonSmall' c='sand' text='Play'></AppText>
-                </Button> */}
-                <AppButton buttonSize="buttonMedium" textVariant="buttonMedium" variant='contained' bg='black' text='PLAY'/>
+                <AppButton onClick={clickPlay} buttonSize="buttonMedium" textVariant="buttonMedium" variant='contained' bg='black' text='PLAY'/>
             </div>
 
             <div className={styles.pickText}>
-                <AppText c='black' variant='bodyBold' text='SONG NAME' wdth='100%'></AppText>
-                <AppText variant='bodyExtraSmall' c='black' text='ARTIST' wdth='100%'></AppText>
-                <AppText variant='bodySmall' c='black' text='This song is awesome' margin='1rem 0 0 0' wdth='100%'></AppText>
+                <AppText c='black' variant='bodyBold' text={musicPicks.songs[randomNumber].Song_name} wdth='100%'></AppText>
+                <AppText variant='bodyExtraSmall' c='black' text={musicPicks.songs[randomNumber].Artist} wdth='100%'></AppText>
+                <AppText variant='bodySmall' c='black' text={musicPicks.songs[randomNumber].Reason} margin='1rem 0 0 0' wdth='100%'></AppText>
             </div>
             </Row>
 

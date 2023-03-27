@@ -429,6 +429,9 @@ export default function About() {
                             <ProcessBlock background='sand' mobileheight='10rem'>
                                 <AppText variant='headerSmall' c='pink' align='center' wdth='100%' text="Development" />
                                 <br />
+                                <br />
+                                <AppText variant='bodySmall' c='black' wdth='55%' margin='1rem 1rem 5 0 '
+                                    text={"JamJam Utilizes Spotify's API to search, get, and add music for the user. It also uses OpenWeather to get the current weather and reccomend music based off the current climate. Authentication is done through NextAuth and Spotify to ensure safe access and access to the user's spotify account. "} />
                             </ProcessBlock>
 
 

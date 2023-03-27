@@ -1,17 +1,24 @@
-[
+
+{
+"songs":[
     {
-        "Song_name": "Name",
-        "Artist": "Artist",
-        "Reason": "Awesome"
-    },
-    {
-        "Song_name": "Name",
-        "Artist": "Artist",
-        "Reason": "Awesome"
-    },
-    {
-        "Song_name": "Name",
-        "Artist": "Artist",
-        "Reason": "Awesome"
-    }
+        "Song_name": "In a deep, dark forest",
+        "Artist": "Kikuo",
+        "Reason": "This song is off of Kikuo's newest album! Their music is so cool. I would describe it as scary clown music but in a good way...",
+        "Song": "/kikuo.jpeg"
+      },
+      {
+        "Song_name": "Say Yes",
+        "Artist": "Elliot Smith",
+        "Reason": "I love listening to this one while on the train! Super melancholic and gets me to just think about stuff.",
+        "Song": "/elliot.jpeg"
+      },
+      {
+        "Song_name": "Easter Sunday",
+        "Artist": "Zelooperz",
+        "Reason": "With Easter around the corner, why not listen to the best song about Easter? Shout out Zelooperz.",
+        "Song": "/zelooperz.jpeg"
+      }
 ]
+ 
+}
