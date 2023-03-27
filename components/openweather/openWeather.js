@@ -3,7 +3,7 @@ import styles from "../../styles/Home.module.css";
 import { useState, useEffect} from 'react';
 import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
-import AppText from '../apptext/apptext';
+import AppText from '../apptext/appText';
 import { Player } from '@lottiefiles/react-lottie-player';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -20,12 +20,22 @@ position:relative;
 
 const Container = styled.div`
 padding:5%;
-height:22rem;
-width:35rem;
+height:300px;
+width:500px;
 background-color: #DD727F;
 position:relative;
 border-radius:10px;
 overflow:hidden;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+  width: 400px;
+  height:275px;
+};
+
+@media (max-width: 700px) {
+  width: 350px;
+  height:225px;
+}
 `
 
 const OvalOverlay = styled.div`
@@ -39,6 +49,15 @@ margin:auto;
 top:50%;
 right:0;
 left:0;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+  width: 400px;
+  height:275px;
+};
+
+@media (max-width: 700px) {
+  height:90%;
+  width:75%;
 `
 
 const Row = styled.div`
@@ -239,7 +258,10 @@ export default function OpenWeather({sendWeather}) {
                 <AppText text={city} variant='headerSmall' wdth='auto' c='sand'></AppText>
                 <AppText text={country} variant='bodySmall' c='gray'></AppText>
               </TextRow>
-              <AppText text={`${data.main.temp} °C`} variant='header' wdth='auto' c='sand' margin='1rem 0 0 0'></AppText>
+              <Row>
+              <AppText text={`${data.main.temp}`} variant='header' wdth='auto' c='sand' margin='1rem 0 0 0'></AppText>
+              <AppText text='°C' variant='headerSmall' wdth='auto' c='sand' padding='0.5rem 0 0 0'></AppText>
+              </Row>
               <AppText text={w.main} variant='bodySmall' c='gray'></AppText>
             </Column>
           ))
@@ -251,7 +273,10 @@ export default function OpenWeather({sendWeather}) {
               <AppText text={vancouverData.name.toUpperCase()} variant='headerSmall' wdth='auto' c='sand'></AppText>
               <AppText text={vancouverData.sys.country} variant='bodySmall' c='gray'></AppText>
             </TextRow>
-            <AppText text={`${vancouverData.main.temp} °C`} variant='header' wdth='auto'c='sand' margin='1rem 0 0 0'></AppText>
+            <Row>
+            <AppText text={`${vancouverData.main.temp}`} variant='header' wdth='auto'c='sand'></AppText>
+            <AppText text='°C' variant='headerSmall' c='sand' padding='0.5rem 0 0 0'></AppText>
+            </Row>
             <AppText text={vancouverData.weather[0].main} variant='bodySmall' c='gray'></AppText>
           </Column>
         )}

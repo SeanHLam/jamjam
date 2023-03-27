@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import styles from "../../styles/Home.module.css";
-import AppText from '../apptext/apptext';
+import AppText from '../apptext/appText';
 import Card from '@mui/material/Card';
 import Image from 'next/image';
 

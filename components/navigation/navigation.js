@@ -8,7 +8,6 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Popover from '@mui/material/Popover';
 import { useRouter } from 'next/router'
-import AppText from "../apptext/apptext";
 import { motion } from "framer-motion";
 import { signOut } from "next-auth/react";
 
@@ -16,7 +15,7 @@ import { signOut } from "next-auth/react";
 const Wrapper = styled.div`
 width:100vw;
 background-color: transparent;
-padding:1em 5em;
+padding:2em 3em;
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -68,8 +67,6 @@ export default function Navigation() {
     width: '100%',
     display:'flex',
     flexDirection:"column",
-    padding: '2em 1em',
-    margin: '0 1em',
     outline: 'none'
     };
 
@@ -136,8 +133,8 @@ export default function Navigation() {
                     <motion.li variants={menus}>
                         <Text onClick={()=>router.push("/about")} variant={"navText"}>ABOUT</Text>
                     </motion.li>
-                    <motion.li variants={menus}>
-                        <Text onClick={logout} variant={"button"}>LOGOUT</Text>
+                    <motion.li variants={menus} style={{marginTop:'1rem'}}>
+                        <Text onClick={logout} variant={"header"}>LOGOUT</Text>
                     </motion.li>
                 </motion.ul>
                 </Box>

@@ -16,7 +16,7 @@ import Footer from "../components/footer/footer";
 import { useSession } from "next-auth/react";
 import { playlist, weatherPlaylist } from "../data/playlists";
 import NoMusic from "../components/musicplayer/noMusic";
-import AppText from "../components/apptext/apptext";
+import AppText from "../components/apptext/appText";
 import Popup from "../components/popuup/popup";
 export const ButtonWrapper = styled.div`
   display: flex;
@@ -64,7 +64,6 @@ export default function Music() {
 
   useEffect(() => {
     newSong();
-
   }, [category]);
 
   function getRandomSearch() {
@@ -301,7 +300,9 @@ export default function Music() {
       <Wrapper>
         <PillMenuCard sendCategory={makeCategory} />
 
-        <AppText wdth="300" align="center" text={`Currently Playing: ${category}`} />
+        <div style={{borderRadius: '1.5rem', backgroundColor:'var(--pink-color)', padding:'0.5rem 1rem'}}>
+          <AppText wdth="300" c='sand' align="center" variant="headerSmall" text={`Currently Playing: ${category}`} />
+        </div>
         {song ? <MusicPlayer song={song.id} /> : <NoMusic />}
        
         <ButtonWrapper>

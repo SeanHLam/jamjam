@@ -1,4 +1,4 @@
-import AppText from "../apptext/apptext"
+import AppText from "../apptext/appText"
 import styled from "styled-components";
 import { Typography } from "@mui/material";
 
