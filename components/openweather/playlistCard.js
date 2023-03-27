@@ -6,6 +6,7 @@ import { useRef } from "react";
 import styles from "../../styles/Home.module.css";
 import { Player } from "@lottiefiles/react-lottie-player";
 import{ weatherPlaylist} from "../../data/playlists";
+import { useRouter } from "next/router";
 
 const Row = styled.div`
 width:100%; 
@@ -26,8 +27,9 @@ align-items:flex-start;
 export default function PlaylistCard({
    
     currWeather,
-    clickPlay,
+    
 }){
+    const router = useRouter();
 
     const animation = useRef(null);
 
@@ -36,6 +38,12 @@ export default function PlaylistCard({
         setTimeout(() => {
             animation.current?.stop();
         }, 1000);
+
+    }
+
+    const clickPlay = () => {
+       router.push(`/music`)
+
 
     }
 
@@ -52,7 +60,8 @@ export default function PlaylistCard({
 
             <Row style={{justifyContent:'space-between'}}>
             <Column>
-            <AppText text='Recommended for you:' wdth='100%' c='gray' variant='bodySmall'/>
+            <AppText
+             text='Recommended for you:' wdth='100%' c='gray' variant='bodySmall'/>
             <AppText text={weatherPlaylist[currWeather[0].main].name} c='black' variant='bodyBold' margin='0 0 1rem 0'  wdth="20"/>
             <AppButton onClick={clickPlay} variant='contained' buttonSize='buttonMedium' bg='black' textcolor='sand' textWidth='100%' text='PLAY'/>
 
