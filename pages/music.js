@@ -265,7 +265,9 @@ export default function Music() {
       <Wrapper>
         <PillMenuCard sendCategory={makeCategory} />
 
-        <AppText wdth="300" align="center" text={`Currently Playing: ${category}`} />
+        <div style={{borderRadius: '1.5rem', backgroundColor:'var(--pink-color)', padding:'0.5rem 1rem'}}>
+          <AppText wdth="300" c='sand' align="center" variant="headerSmall" text={`Currently Playing: ${category}`} />
+        </div>
         {song ? <MusicPlayer song={song.id} /> : <NoMusic />}
        
         <ButtonWrapper>

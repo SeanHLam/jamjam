@@ -11,7 +11,7 @@ width:100%;
 display:flex;
 flex-direction:row;
 align-items:flex-end;
-justify-content:space-evenly;
+justify-content:flex-start;
 z-index:5;
 `
 
@@ -20,6 +20,7 @@ display:flex;
 flex-direction:column;
 align-items:flex-start;
 `
+
 
 export default function PlaylistCard({
     playlist='Sample',
@@ -36,17 +37,20 @@ export default function PlaylistCard({
     }
 
     return (
-        <Row>
+        <Row style={{gap:'2rem', width:'100%'}}>
             <Image
             src='/boiler.jpeg'
+            className={styles.pickImage}
             width={125}
             height={125}
-            className={styles.pickImage}/>
+            />
 
+
+            <Row style={{justifyContent:'space-between'}}>
             <Column>
             <AppText text='Recommended for you:' wdth='100%' c='gray' variant='bodySmall'/>
             <AppText text={playlist} c='black' variant='bodyBold' margin='0 0 1rem 0' />
-            <AppButton variant='contained' buttonSize='buttonMedium' bg='black' textcolor='sand' textWidth='100%' text='PLAY'/>
+            <AppButton variant='contained' buttonSize='buttonMedium' textVariant="buttonMedium" bg='black' textcolor='sand' textWidth='100%' text='PLAY'/>
             </Column>
 
             <div onClick={refreshList} className={styles.refresh}>
@@ -58,6 +62,8 @@ export default function PlaylistCard({
                     style={{ height: '2rem', width: '2rem', cursor:'pointer'}}
                 />
             </div>
+
+            </Row>
         </Row>
     )
 }
