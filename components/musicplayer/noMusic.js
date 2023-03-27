@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Typography } from "@mui/material";
-import AppText from '../apptext/apptext';
+import AppText from '../apptext/appText';
 
 const Wrapper = styled.div`
 display: flex;
@@ -37,7 +37,7 @@ export default function NoMusic({
     return (
         
      <Wrapper className="NoMusic">
-        <AppText text="Select A Category" variant='header' align='center' wdth='100' c='sand'></AppText>
+        <AppText text="Select A Category" variant='headerSmall' align='center' wdth='100' c='sand'></AppText>
      </Wrapper>
     )
 }

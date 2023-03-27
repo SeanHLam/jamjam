@@ -30,7 +30,7 @@ export let theme = createTheme({
 
  typography: {
   header: {
-    fontSize: '2rem',
+    fontSize: '3rem',
     fontFamily: "Righteous",
     // [theme.breakpoints.down('sm')]: {
     //   fontSize: '3rem',
@@ -65,7 +65,7 @@ export let theme = createTheme({
     fontFamily: "Sarabun",
   },
   bodyExtraSmall: {
-    fontSize: '1.1rem',
+    fontSize: '0.9rem',
     fontFamily: "Sarabun",
   },
   bodyBold: {
@@ -90,11 +90,7 @@ export let theme = createTheme({
     fontFamily: "Righteous",
   },
   navText: {
-    fontSize: '12em',
-    fontFamily: "Righteous",
-  },
-  navText: {
-    fontSize: '12rem',
+    fontSize: '11em',
     fontFamily: "Righteous",
   },
 },
@@ -147,9 +143,9 @@ theme = createTheme(theme, {
   breakpoints: {
     values: {
       xs: 0,    // Extra small devices (portrait phones)
-      sm: 600,  // Small devices (landscape phones, 7" tablets)
-      md: 800,  // Medium devices (10" tablets, small laptops)
-      lg: 1280, // Large devices (laptops and desktops)
+      sm: 700,  // Small devices (landscape phones, 7" tablets)
+      md: 701,  // Medium devices (10" tablets, small laptops)
+      lg: 1120, // Large devices (laptops and desktops)
       // xl: 1920, // Extra large devices (large desktops)
     },
   },
@@ -157,10 +153,10 @@ theme = createTheme(theme, {
   typography: {
     header: {
       [theme.breakpoints.between("0", "sm")]: {
-        fontSize: '1.5rem',
+        fontSize: '2rem',
       },
       [theme.breakpoints.between("sm", "md")]: {
-        fontSize: '1.75rem',
+        fontSize: '2.5rem',
       },
     },
     bodySmall: {
@@ -169,6 +165,30 @@ theme = createTheme(theme, {
       },
       [theme.breakpoints.between("sm", "md")]: {
         fontSize: '1rem',
+      },
+    },
+    headerSmall: {
+      [theme.breakpoints.between("0", "sm")]: {
+        fontSize: '1.1rem',
+      },
+      [theme.breakpoints.between("sm", "md")]: {
+        fontSize: '1.6rem',
+      },
+    },
+    bodyBold: {
+      [theme.breakpoints.between("0", "sm")]: {
+        fontSize: '1.15rem',
+      },
+      [theme.breakpoints.between("sm", "md")]: {
+        fontSize: '1.3rem',
+      },
+    },
+    buttonMedium: {
+      [theme.breakpoints.between("0", "sm")]: {
+        fontSize: '1.1rem',
+      },
+      [theme.breakpoints.between("sm", "md")]: {
+        fontSize: '1.3rem',
       },
     },
     landing: {
@@ -180,5 +200,29 @@ theme = createTheme(theme, {
         fontSize: '3rem',
       },
     },
+    navText: {
+      [theme.breakpoints.between("0", "sm")]: {
+        fontSize: '6rem',
+      },
+      [theme.breakpoints.between("sm", "md")]: {
+        fontSize: '10rem',
+      },
+    },
+    bodyExtraSmall: {
+      [theme.breakpoints.between("0", "sm")]: {
+        fontSize: '0.8rem',
+      },
+      [theme.breakpoints.between("sm", "md")]: {
+        fontSize: '1rem',
+      },
+    },
+    buttonLarge: {
+      [theme.breakpoints.between("0", "sm")]: {
+        fontSize: '1.1rem',
+      },
+      [theme.breakpoints.between("sm", "md")]: {
+        fontSize: '1.3rem',
+      },
+    }
   },
 });

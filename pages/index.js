@@ -7,15 +7,10 @@ import Button from "@mui/material/Button";
 import OpenWeather from '../components/openweather/openWeather'
 import { useState } from "react";
 import { Typography } from "@mui/material";
-import AppText from "../components/apptext/apptext";
 import CreatorCard from "../components/creatorpick/creatorPick";
 import { delay, motion } from "framer-motion"
 import { getProviders, signIn } from "next-auth/react";
 
-// const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID;
-// const REDIRECT_URI = "http://localhost:3000/home";
-// const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-// const RESPONSE_TYPE = "token";
 
 const Wrapper = styled.div`
 display: flex;

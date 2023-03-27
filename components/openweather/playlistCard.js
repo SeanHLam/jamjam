@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import AppButton from "../button/button";
-import AppText from "../apptext/apptext";
+import AppText from "../apptext/appText";
 import { useRef } from "react";
 import styles from "../../styles/Home.module.css";
 import { Player } from "@lottiefiles/react-lottie-player";
@@ -12,7 +12,7 @@ width:100%;
 display:flex;
 flex-direction:row;
 align-items:flex-end;
-justify-content:space-evenly;
+justify-content:flex-start;
 z-index:5;
 `
 
@@ -21,6 +21,7 @@ display:flex;
 flex-direction:column;
 align-items:flex-start;
 `
+
 
 export default function PlaylistCard({
    
@@ -40,17 +41,21 @@ export default function PlaylistCard({
 
 
     return (
-        <Row>
+        <Row style={{gap:'2rem', width:'100%'}}>
             <Image
            src={weatherPlaylist[currWeather[0].main].image}
+            className={styles.pickImage}
             width={125}
             height={125}
-            className={styles.pickImage}/>
+            />
 
+
+            <Row style={{justifyContent:'space-between'}}>
             <Column>
             <AppText text='Recommended for you:' wdth='100%' c='gray' variant='bodySmall'/>
             <AppText text={weatherPlaylist[currWeather[0].main].name} c='black' variant='bodyBold' margin='0 0 1rem 0'  wdth="20"/>
             <AppButton onClick={clickPlay} variant='contained' buttonSize='buttonMedium' bg='black' textcolor='sand' textWidth='100%' text='PLAY'/>
+
             </Column>
 
             <div onClick={refreshList} className={styles.refresh}>
@@ -62,6 +67,8 @@ export default function PlaylistCard({
                     style={{ height: '2rem', width: '2rem', cursor:'pointer'}}
                 />
             </div>
+
+            </Row>
         </Row>
     )
 }

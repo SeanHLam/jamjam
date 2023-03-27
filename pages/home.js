@@ -10,7 +10,7 @@ import {useRouter} from 'next/router'
 import Navigation from '../components/navigation/navigation'
 import CreatorCard from "../components/creatorpick/creatorPick";
 import { Player } from "@lottiefiles/react-lottie-player";
-import AppText from "../components/apptext/apptext";
+import AppText from "../components/apptext/appText";
 import LandingCard from "../components/landingcard/landingCard";
 import AppButton from "../components/button/button";
 import Footer from "../components/footer/footer";
@@ -28,12 +28,21 @@ width:100vw;
 const Photo = styled(Image)`
 opacity: 0.3;
 object-fit:contain;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+  width: 40%;
+}
+
+@media (max-width: 700px) {
+  width: 40%;
+}
+
 `
 
 const Row = styled.div`
 display:flex;
 flex-direction:row;
-padding: 2em 5em;
+padding: 2em 3em;
 align-items:center;
 justify-content:space-around;
 width:100%;
@@ -44,15 +53,25 @@ const LandingContainer = styled.div`
 display:flex;
 flex-direction:row;
 align-items:flex-start;
-margin:3rem 0 5rem 0;
+margin:3em 0 2em 0;
 width:100%;
 justify-content:space-around;
-padding: 2em 5em;
+padding: 2em 3em;
 `
 
 const Column = styled.div`
 display:flex;
 flex-direction:column;
+width:75%;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+  width: 75%;
+};
+
+@media (max-width: 700px) {
+  width: 80%;
+}
+
 `
 
 const LandingText = styled.div`
@@ -76,11 +95,24 @@ width:12rem;
 height: ${props => props.height};
 margin: ${props => props.margin};
 box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px;
+display:flex;
+flex-direction:column;  
+align-items:flex-start;
+justify-content:space-between;
+padding: 3rem 2rem;
+position:relative;
 
-@media (max-width: 600px) {
-  width: 8rem;
+@media (min-width: 701px) and (max-width: 1120px) {
+  width: 9rem;
+  height: ${props => props.tabletheight};
+  padding: 2rem 1rem;
+};
+
+@media (max-width: 700px) {
+  width: 6rem;
   height: ${props => props.mobileheight};
   border-radius:1.5rem;
+  padding: 1.5rem 1rem;
 }
 
 `
@@ -88,7 +120,8 @@ box-shadow: rgba(0, 0, 0, 0.3) 2px 2px 2px;
 const BlockCont = styled.div`
 display:flex;
 gap:2rem;
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+  gap: 0.75rem;
   display:none;
 }
 `
@@ -97,7 +130,12 @@ const LandingBottom = styled.div`
 display:flex;
 flex-direction:row;
 align-items:center;
-gap:5rem;
+gap:4rem;
+
+@media (max-width: 700px) {
+  gap: 2rem;
+}
+
 `
 
 const BottomSection = styled.section`
@@ -107,13 +145,27 @@ justify-content:space-evenly;
 align-items:center;
 width:100%;
 background-color:#EDEDE8;
-padding:6rem 0rem 0rem 0rem;
-border-radius:20% 20% 0% 0%;
+border-radius:4em 4em 0 0;
 
 @media (max-width: 600px) {
   flex-direction: column;
 }
+`
 
+const BottomCont = styled.div`
+display:flex;
+flex-direction:column;
+gap:5rem;
+padding-top:5rem;
+
+@media (min-width: 701px) and (max-width: 1120px) {
+  gap:1rem;
+};
+
+@media (max-width: 700px) {
+  gap:0.5rem;
+  padding-top:3rem;
+}
 `
 
 export default function Home() {
@@ -155,33 +207,33 @@ function stylizeLastWord(text, color) {
 
       <LandingContainer>
         <LandingText>
-          <Column style={{width:'100%'}}>
-          <AppText variant='landing' c='black' wdth='80%' text={stylizeLastWord("EXPLORE THE\nWORLD OF\nENDLESS  JAMS", "pink")} align='left' style={{whiteSpace: 'pre-line'}}/>
-          {/* <AppText variant='landing' c='black' text={'EXPLORE THE WORLD OF\nENDLESS MUSIC JAMS'} align='left' style={{ whiteSpace: 'pre-line' }}/> */}
-          <AppText variant='bodySmall' c='gray' wdth='55%' margin='1rem 0 3rem 0 ' text={"Easily find music you never knew you needed. Simply generate a unique mix of songs that you'll love. Get ready to explore new music, find hidden gems, and shape your own unique music experience."}/>
+          <Column>
+          <AppText variant='landing' c='black' wdth='100%' text={stylizeLastWord("EXPLORE THE\nWORLD OF\nENDLESS  JAMS", "pink")} align='left' style={{whiteSpace: 'pre-line'}}/>
+          <AppText variant='bodySmall' c='gray' wdth='100%' margin='1rem 0 2rem 0 ' text={"Easily find music you never knew you needed. Simply generate a unique mix of songs that you'll love. Get ready to explore new music, find hidden gems, and shape your own unique music experience."}/>
           </Column>
           <AppButton onClick={()=>router.push("/music")} variant='contained' buttonSize='buttonLarge' bg='black' text='DISCOVER' textcolor='sand' textWidth='100%'/>
         </LandingText>
         
         <BlockCont>
-          <Block background='#dd727f' height='20rem' mobileheight='10rem' style={{padding:'3rem 2rem'}}>
-            <AppText variant='headerSmall' c='sand' align='center' wdth='100%' text="Music for Every Mood"/>
+          <Block background='#dd727f' height='20rem' mobileheight='11rem' tabletheight='15rem'>
+            <AppText variant='headerSmall' c='sand' align='left' wdth='100%' text="Music for Every Mood"/>
             <Player
               autoplay
               loop
               src="animations/spotify.json"
+              className={styles.spotify}
               speed={0.5}
             />
           </Block>
-          <Block background='#aac5bf' height='27rem' mobileheight='13.5rem' style={{overflow:'none'}} >
-              <Player 
-                    autoplay
-                    loop
-                    src='animations/astronaut3.json'
-                    speed={0.5}
-                    className={styles.astronaut}
-                    
-              />
+          <Block background='#aac5bf' height='27rem' mobileheight='15rem' tabletheight='20.25rem' style={{overflow:'none'}} >
+            <AppText variant='headerSmall' c='sand' align='left' wdth='100%' text="Over 1 Billion + Music Available"/>
+            <Player 
+              autoplay
+              loop
+              src='animations/music.json'
+              speed={0.8}
+              className={styles.music}
+            />
           </Block>
         </BlockCont>
       </LandingContainer>
@@ -195,12 +247,14 @@ function stylizeLastWord(text, color) {
       </Row>
 
       <BottomSection>
+
+        <BottomCont>
         <CreatorCard/>
         <OpenWeather/>
+        </BottomCont>
 
         <Footer/>
       </BottomSection>
-
       {/* <Column style={{justifyContent:'flex-start'}}>
         <AppText variant='headerSmall' text='Creator&#39;s Picks'></AppText> 
         <CreatorCard/>

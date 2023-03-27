@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import AppText from "../apptext/apptext";
+import AppText from "../apptext/appText";
 
 const PopupDiv = styled.div`
   position: fixed;

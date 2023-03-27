@@ -1,4 +1,4 @@
-import AppText from "../apptext/apptext"
+import AppText from "../apptext/appText"
 import Button from "@mui/material/Button"
 import styles from "../../styles/Home.module.css";
 import styled from 'styled-components';

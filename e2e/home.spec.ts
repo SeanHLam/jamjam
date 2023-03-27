@@ -15,47 +15,51 @@ test.beforeAll(async () => {
   console.log("Before tests");
 });
 
-test.describe("Testing the pill menu", () => {
+test.describe("Testing Blocks in Landing Page", () => {
 
-    test("Counting how many pill menu items show up", async ({ page }) => {
-      await page.goto(urlMusic);
+    test("Counting the number of blocks", async ({ page }) => {
+      await page.goto(urlHome);
   
-      await expect(page.locator(".pill")).toHaveCount(9);
+      await expect(page.locator(".Block")).toHaveCount(2);
   
     });
     
-    test("Testing the font size of pill menu", async ({ page }) => {
-      await page.goto(urlMusic);
+    test("Testing the size of the blocks", async ({ page }) => {
+      await page.goto(urlHome);
   
-      const pill = await page.waitForSelector('.pill');
+      const block = await page.waitForSelector('.Block');
   
-      const pillSize = await pill.evaluate((ele) => {
-        return window.getComputedStyle(ele).getPropertyValue("font-size");
+      const blockSize = await block.evaluate((ele) => {
+        return window.getComputedStyle(ele).getPropertyValue("height");
       });
   
-      expect(pillSize).toBe("14px");
+      expect(blockSize).toBe("280px");
   
     });
   
   });
   
-  test.describe("Testing the Music Menu", () => {
+  test.describe("Testing the 'Discover' Button", () => {
+    test('Navigate to the music page', async ({ page }) => {
+      await page.goto(urlHome)
+      await page.click('button=Discover')
+      await expect(page).toHaveURL('http://localhost:3000/music')
+    });
+
+  });
+
+  test.describe("Testing API Logos", () => {
   
-    test("Testing no music menu height", async ({ page }) => {
-      await page.goto(urlMusic);
+    test("Testing the sizes of API logos", async ({ page }) => {
+      await page.goto(urlHome);
   
-      const music = await page.waitForSelector('.NoMusic');
+      const logo = await page.waitForSelector('.Photo');
   
-      const musicHeight = await music.evaluate((ele) => {
+      const logoSize = await logo.evaluate((ele) => {
         return window.getComputedStyle(ele).getPropertyValue("height");
       });
   
-      expect(musicHeight).toBe("350px");
-  
-     
+      expect(logoSize).toBe("50px");
   
     });
-    
-  
-  
   });
