@@ -123,7 +123,7 @@ export default function OpenWeather({sendWeather}) {
         .then((response) => {
           console.clear()
           setData(response.data);
-          g(response.data);
+         
           setWeather(response.data.weather);
           setErrorMessage("");
           setTrigger(false);
@@ -132,7 +132,7 @@ export default function OpenWeather({sendWeather}) {
           setCountry(response.data.sys.country);
           handleClose();
         }).catch(err => {
-          g(err);
+        
           setErrorMessage("Invalid Location. Please enter another location!");
           setData({});
           setWeather();
@@ -160,10 +160,10 @@ export default function OpenWeather({sendWeather}) {
         setVancouverWeather(vancouver.data.weather);
         
       } catch (err2) {
-        g(err2);
+      
       }
     };
-    g(weather);
+   
     getWeather();
     fetchData();
   }, [weather]);
