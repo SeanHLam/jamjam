@@ -8,7 +8,6 @@ import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
 import Popover from '@mui/material/Popover';
 import { useRouter } from 'next/router'
-import AppText from "../apptext/apptext";
 import { motion } from "framer-motion";
 import { signOut } from "next-auth/react";
 

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import AppButton from "../button/button";
-import AppText from "../apptext/apptext";
+import AppText from "../apptext/appText";
 import { useRef } from "react";
 import styles from "../../styles/Home.module.css";
 import { Player } from "@lottiefiles/react-lottie-player";

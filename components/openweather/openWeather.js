@@ -3,7 +3,7 @@ import styles from "../../styles/Home.module.css";
 import { useState, useEffect} from 'react';
 import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
-import AppText from '../apptext/apptext';
+import AppText from '../apptext/appText';
 import { Player } from '@lottiefiles/react-lottie-player';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -191,6 +191,7 @@ export default function OpenWeather() {
       weather.map((w, index) => {
           return (
             <Player
+              key={index}
               className={styles.animation}
               autoplay
               loop
@@ -201,6 +202,7 @@ export default function OpenWeather() {
           vancouverWeather.map((w, index) => {
             return (
               <Player
+                key={index}
                 className={styles.animation}
                 autoplay
                 loop
@@ -237,7 +239,9 @@ export default function OpenWeather() {
 
         {weather ? (
           weather.map((w, index) => (
-            <Column className={styles.weatherInfo}>
+            <Column
+            key={index}
+            className={styles.weatherInfo}>
               <TextRow>
                 <AppText text={city} variant='headerSmall' wdth='auto' c='sand'></AppText>
                 <AppText text={country} variant='bodySmall' c='gray'></AppText>

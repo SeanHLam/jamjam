@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import Navigation from '../components/navigation/navigation'
 import CreatorCard from "../components/creatorpick/creatorPick";
 import { Player } from "@lottiefiles/react-lottie-player";
-import AppText from "../components/apptext/apptext";
+import AppText from "../components/apptext/appText";
 import LandingCard from "../components/landingcard/landingCard";
 import AppButton from "../components/button/button";
 import Footer from "../components/footer/footer";
@@ -35,12 +35,22 @@ display: flex;
 flex-direction: column;
 align-items: center;
 width: 100vw;
+
 max-width:100vw;
 min-height: 110vh;
 
 @media (max-width: 600px) {
     max-width:100vw;
     min-height:0;
+}
+
+@media (max-width: 600px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 60vh;
 }
 
 @media (min-width: 701px) and (max-width: 1120px) {
@@ -59,6 +69,10 @@ margin-top: 8rem;
 
 @media (min-width: 701px) and (max-width: 1120px) {
     margin-top: 5rem;
+}
+
+@media (max-width: 600px) {
+    margin-top: 3rem;
 }
 `
 
@@ -392,6 +406,7 @@ export default function About() {
 
                 </Wrapper>
 
+                <Spacer />
                 <BottomSection id="bottomSection">
                     <ProcessCont>
                         <Row>
