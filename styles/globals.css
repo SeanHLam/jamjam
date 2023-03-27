@@ -18,12 +18,19 @@ a {
   cursor: url("https://i.stack.imgur.com/inwsy.png") 16 16, none !important;  
 }
 
-
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   body{
     font-size: 10px;
   }
 }
+
+
+@media (min-width: 701px) and (max-width: 1120px){
+  body{
+    font-size: 12px;
+  }
+}
+
 
 iframe{
   border: none;
